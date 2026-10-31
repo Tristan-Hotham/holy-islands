@@ -1,0 +1,3508 @@
+{
+ "meta": {
+  "retrieved": "2026",
+  "page": "https://maps.tristanhotham.com/holy-islands/",
+  "repo": "https://github.com/Tristan-Hotham/holy-islands",
+  "n_rows": 36745,
+  "n_items_world": 29874,
+  "small_km2": 25,
+  "island_km2": 1000,
+  "snap_km": 1.5,
+  "excluded_class": 136,
+  "future_dates": 8
+ },
+ "coverage": {
+  "n": 20228,
+  "dated_n": 7071,
+  "dated_pct": 34.95649594621317,
+  "rc_n": 2011,
+  "rc_pct": 28.440107481261492,
+  "label_pct": 70.28376507810955,
+  "sl0_pct": 29.419616373343878,
+  "n_countries": 45,
+  "top": [
+   {
+    "iso": "DEU",
+    "name": "Germany",
+    "n": 4868,
+    "pct": 24.1,
+    "per_m": 58.6
+   },
+   {
+    "iso": "FRA",
+    "name": "France",
+    "n": 2712,
+    "pct": 13.4,
+    "per_m": 40.4
+   },
+   {
+    "iso": "ITA",
+    "name": "Italy",
+    "n": 1769,
+    "pct": 8.7,
+    "per_m": 29.3
+   },
+   {
+    "iso": "ESP",
+    "name": "Spain",
+    "n": 1723,
+    "pct": 8.5,
+    "per_m": 36.6
+   },
+   {
+    "iso": "GBR",
+    "name": "United Kingdom",
+    "n": 1398,
+    "pct": 6.9,
+    "per_m": 20.9
+   },
+   {
+    "iso": "POL",
+    "name": "Poland",
+    "n": 894,
+    "pct": 4.4,
+    "per_m": 23.5
+   },
+   {
+    "iso": "GRC",
+    "name": "Greece",
+    "n": 871,
+    "pct": 4.3,
+    "per_m": 81.3
+   },
+   {
+    "iso": "NLD",
+    "name": "Netherlands",
+    "n": 786,
+    "pct": 3.9,
+    "per_m": 45.3
+   },
+   {
+    "iso": "RUS",
+    "name": "Russia",
+    "n": 701,
+    "pct": 3.5,
+    "per_m": 4.9
+   },
+   {
+    "iso": "AUT",
+    "name": "Austria",
+    "n": 492,
+    "pct": 2.4,
+    "per_m": 55.4
+   },
+   {
+    "iso": "BEL",
+    "name": "Belgium",
+    "n": 469,
+    "pct": 2.3,
+    "per_m": 40.8
+   },
+   {
+    "iso": "PRT",
+    "name": "Portugal",
+    "n": 423,
+    "pct": 2.1,
+    "per_m": 41.2
+   },
+   {
+    "iso": "CZE",
+    "name": "Czechia",
+    "n": 355,
+    "pct": 1.8,
+    "per_m": 33.3
+   },
+   {
+    "iso": "TUR",
+    "name": "Turkey",
+    "n": 348,
+    "pct": 1.7,
+    "per_m": 4.2
+   },
+   {
+    "iso": "CHE",
+    "name": "Switzerland",
+    "n": 333,
+    "pct": 1.6,
+    "per_m": 38.8
+   }
+  ],
+  "deu_pct": 24.06565157207831,
+  "irl_n": 321,
+  "per_m_top": [
+   {
+    "iso": "MKD",
+    "name": "North Macedonia",
+    "n": 275,
+    "pct": 1.4,
+    "per_m": 132.0
+   },
+   {
+    "iso": "GRC",
+    "name": "Greece",
+    "n": 871,
+    "pct": 4.3,
+    "per_m": 81.3
+   },
+   {
+    "iso": "DEU",
+    "name": "Germany",
+    "n": 4868,
+    "pct": 24.1,
+    "per_m": 58.6
+   },
+   {
+    "iso": "AUT",
+    "name": "Austria",
+    "n": 492,
+    "pct": 2.4,
+    "per_m": 55.4
+   },
+   {
+    "iso": "IRL",
+    "name": "Ireland",
+    "n": 266,
+    "pct": 1.3,
+    "per_m": 53.8
+   }
+  ],
+  "per_m_low": [
+   {
+    "iso": "FIN",
+    "name": "Finland",
+    "n": 10,
+    "pct": 0.0,
+    "per_m": 1.8
+   },
+   {
+    "iso": "TUR",
+    "name": "Turkey",
+    "n": 348,
+    "pct": 1.7,
+    "per_m": 4.2
+   },
+   {
+    "iso": "HUN",
+    "name": "Hungary",
+    "n": 43,
+    "pct": 0.2,
+    "per_m": 4.4
+   },
+   {
+    "iso": "UKR",
+    "name": "Ukraine",
+    "n": 205,
+    "pct": 1.0,
+    "per_m": 4.6
+   },
+   {
+    "iso": "NOR",
+    "name": "Norway",
+    "n": 25,
+    "pct": 0.1,
+    "per_m": 4.7
+   }
+  ],
+  "deu_per_m": 58.6,
+  "irl_per_m": 53.8,
+  "gbr_per_m": 20.9,
+  "natl_n": 3,
+  "pre800_n": 255,
+  "pre1100_n": 914
+ },
+ "islands": {
+  "n": 459,
+  "pct": 2.269131896381254,
+  "sea_n": 414,
+  "sea_pct": 2.046667984971327,
+  "small_n": 107,
+  "small_pct": 0.5289697449080483,
+  "mid_n": 307,
+  "lake_n": 45,
+  "offshore_n": 2,
+  "bigisl_n": 429,
+  "any_pct": 4.389954518489223,
+  "n_override": 18,
+  "override_lake": 16,
+  "kw_n": 46,
+  "kw_isl": 30,
+  "kw_isl_pct": 65.21739130434783,
+  "isl_kw_pct": 6.5359477124183005,
+  "n_polys": 178,
+  "shoreline_isl": 441,
+  "busiest": [
+   {
+    "n": 37,
+    "area": 290.563,
+    "best": "Monastery of Karabot Mevkii",
+    "c": "TUR",
+    "r": "med"
+   },
+   {
+    "n": 16,
+    "area": 204.797,
+    "best": "Longovarda monastery",
+    "c": "GRC",
+    "r": "med"
+   },
+   {
+    "n": 14,
+    "area": 855.123,
+    "best": "Nea Moni of Chios",
+    "c": "GRC",
+    "r": "med"
+   },
+   {
+    "n": 13,
+    "area": 604.087,
+    "best": "Monastery of Vlacherna",
+    "c": "GRC",
+    "r": "med"
+   },
+   {
+    "n": 11,
+    "area": 439.23,
+    "best": "Panagia Drosiani",
+    "c": "GRC",
+    "r": "med"
+   },
+   {
+    "n": 11,
+    "area": 389.658,
+    "best": "Moni Agiou Nikolaou, Andros",
+    "c": "GRC",
+    "r": "med"
+   },
+   {
+    "n": 10,
+    "area": 27.827,
+    "best": "Valaam Monastery",
+    "c": "RUS",
+    "r": "east"
+   },
+   {
+    "n": 8,
+    "area": 3.759,
+    "best": "Abbey of Reichenau",
+    "c": "DEU",
+    "r": "central"
+   },
+   {
+    "n": 8,
+    "area": 767.329,
+    "best": "Convent of Caloura",
+    "c": "PRT",
+    "r": "iberia"
+   },
+   {
+    "n": 8,
+    "area": 486.431,
+    "best": "Vronta Monastery",
+    "c": "GRC",
+    "r": "med"
+   }
+  ]
+ },
+ "periods": {
+  "labels": [
+   [
+    "p1",
+    "Before 800"
+   ],
+   [
+    "p2",
+    "800 to 1099"
+   ],
+   [
+    "p3",
+    "1100 to 1299"
+   ],
+   [
+    "p4",
+    "1300 and later"
+   ]
+  ],
+  "groups": {
+   "all": {
+    "name": "All Europe",
+    "all": {
+     "n": 20228,
+     "isl": 459,
+     "sea": 414,
+     "pct": 2.3,
+     "lo": 2.1,
+     "hi": 2.5
+    },
+    "undated": {
+     "n": 13157,
+     "isl": 364,
+     "sea": 330,
+     "pct": 2.8,
+     "lo": 2.5,
+     "hi": 3.1
+    },
+    "p1": {
+     "n": 255,
+     "isl": 11,
+     "sea": 7,
+     "pct": 4.3,
+     "lo": 2.4,
+     "hi": 7.6
+    },
+    "p2": {
+     "n": 659,
+     "isl": 11,
+     "sea": 11,
+     "pct": 1.7,
+     "lo": 0.9,
+     "hi": 3.0
+    },
+    "p3": {
+     "n": 2220,
+     "isl": 24,
+     "sea": 22,
+     "pct": 1.1,
+     "lo": 0.7,
+     "hi": 1.6
+    },
+    "p4": {
+     "n": 3937,
+     "isl": 49,
+     "sea": 44,
+     "pct": 1.2,
+     "lo": 0.9,
+     "hi": 1.6
+    },
+    "pre1100": {
+     "n": 914,
+     "isl": 22,
+     "sea": 18,
+     "pct": 2.4,
+     "lo": 1.6,
+     "hi": 3.6
+    },
+    "post1100": {
+     "n": 6157,
+     "isl": 73,
+     "sea": 66,
+     "pct": 1.2,
+     "lo": 0.9,
+     "hi": 1.5
+    }
+   },
+   "atl": {
+    "name": "Atlantic Celtic edge",
+    "all": {
+     "n": 697,
+     "isl": 44,
+     "sea": 34,
+     "pct": 6.3,
+     "lo": 4.7,
+     "hi": 8.4
+    },
+    "undated": {
+     "n": 390,
+     "isl": 31,
+     "sea": 23,
+     "pct": 7.9,
+     "lo": 5.7,
+     "hi": 11.1
+    },
+    "p1": {
+     "n": 20,
+     "isl": 3,
+     "sea": 3,
+     "pct": 15.0,
+     "lo": 5.2,
+     "hi": 36.0
+    },
+    "p2": {
+     "n": 8,
+     "isl": 0,
+     "sea": 0,
+     "pct": 0.0,
+     "lo": 0,
+     "hi": 32.4
+    },
+    "p3": {
+     "n": 176,
+     "isl": 7,
+     "sea": 5,
+     "pct": 4.0,
+     "lo": 1.9,
+     "hi": 8.0
+    },
+    "p4": {
+     "n": 103,
+     "isl": 3,
+     "sea": 3,
+     "pct": 2.9,
+     "lo": 1.0,
+     "hi": 8.2
+    },
+    "pre1100": {
+     "n": 28,
+     "isl": 3,
+     "sea": 3,
+     "pct": 10.7,
+     "lo": 3.7,
+     "hi": 27.2
+    },
+    "post1100": {
+     "n": 279,
+     "isl": 10,
+     "sea": 8,
+     "pct": 3.6,
+     "lo": 2.0,
+     "hi": 6.5
+    }
+   },
+   "cont": {
+    "name": "Continental (France and Central Europe)",
+    "all": {
+     "n": 10731,
+     "isl": 34,
+     "sea": 19,
+     "pct": 0.3,
+     "lo": 0.2,
+     "hi": 0.4
+    },
+    "undated": {
+     "n": 7015,
+     "isl": 24,
+     "sea": 13,
+     "pct": 0.3,
+     "lo": 0.2,
+     "hi": 0.5
+    },
+    "p1": {
+     "n": 135,
+     "isl": 5,
+     "sea": 1,
+     "pct": 3.7,
+     "lo": 1.6,
+     "hi": 8.4
+    },
+    "p2": {
+     "n": 351,
+     "isl": 0,
+     "sea": 0,
+     "pct": 0.0,
+     "lo": 0,
+     "hi": 1.1
+    },
+    "p3": {
+     "n": 1255,
+     "isl": 4,
+     "sea": 4,
+     "pct": 0.3,
+     "lo": 0.1,
+     "hi": 0.8
+    },
+    "p4": {
+     "n": 1975,
+     "isl": 1,
+     "sea": 1,
+     "pct": 0.1,
+     "lo": 0.0,
+     "hi": 0.3
+    },
+    "pre1100": {
+     "n": 486,
+     "isl": 5,
+     "sea": 1,
+     "pct": 1.0,
+     "lo": 0.4,
+     "hi": 2.4
+    },
+    "post1100": {
+     "n": 3230,
+     "isl": 5,
+     "sea": 5,
+     "pct": 0.2,
+     "lo": 0.1,
+     "hi": 0.4
+    }
+   },
+   "med": {
+    "name": "Mediterranean",
+    "all": {
+     "n": 3928,
+     "isl": 304,
+     "sea": 300,
+     "pct": 7.7,
+     "lo": 6.9,
+     "hi": 8.6
+    },
+    "undated": {
+     "n": 2655,
+     "isl": 258,
+     "sea": 254,
+     "pct": 9.7,
+     "lo": 8.6,
+     "hi": 10.9
+    },
+    "p1": {
+     "n": 62,
+     "isl": 2,
+     "sea": 2,
+     "pct": 3.2,
+     "lo": 0.9,
+     "hi": 11.0
+    },
+    "p2": {
+     "n": 174,
+     "isl": 9,
+     "sea": 9,
+     "pct": 5.2,
+     "lo": 2.7,
+     "hi": 9.5
+    },
+    "p3": {
+     "n": 268,
+     "isl": 9,
+     "sea": 9,
+     "pct": 3.4,
+     "lo": 1.8,
+     "hi": 6.3
+    },
+    "p4": {
+     "n": 769,
+     "isl": 26,
+     "sea": 26,
+     "pct": 3.4,
+     "lo": 2.3,
+     "hi": 4.9
+    },
+    "pre1100": {
+     "n": 236,
+     "isl": 11,
+     "sea": 11,
+     "pct": 4.7,
+     "lo": 2.6,
+     "hi": 8.2
+    },
+    "post1100": {
+     "n": 1037,
+     "isl": 35,
+     "sea": 35,
+     "pct": 3.4,
+     "lo": 2.4,
+     "hi": 4.7
+    }
+   },
+   "nordic": {
+    "name": "Scandinavia and the Baltic",
+    "all": {
+     "n": 213,
+     "isl": 14,
+     "sea": 12,
+     "pct": 6.6,
+     "lo": 4.0,
+     "hi": 10.7
+    },
+    "undated": {
+     "n": 115,
+     "isl": 10,
+     "sea": 8,
+     "pct": 8.7,
+     "lo": 4.8,
+     "hi": 15.3
+    },
+    "p1": {
+     "n": 0,
+     "isl": 0,
+     "sea": 0,
+     "pct": null,
+     "lo": null,
+     "hi": null
+    },
+    "p2": {
+     "n": 7,
+     "isl": 1,
+     "sea": 1,
+     "pct": 14.3,
+     "lo": 2.6,
+     "hi": 51.3
+    },
+    "p3": {
+     "n": 48,
+     "isl": 2,
+     "sea": 2,
+     "pct": 4.2,
+     "lo": 1.2,
+     "hi": 14.0
+    },
+    "p4": {
+     "n": 43,
+     "isl": 1,
+     "sea": 1,
+     "pct": 2.3,
+     "lo": 0.4,
+     "hi": 12.1
+    },
+    "pre1100": {
+     "n": 7,
+     "isl": 1,
+     "sea": 1,
+     "pct": 14.3,
+     "lo": 2.6,
+     "hi": 51.3
+    },
+    "post1100": {
+     "n": 91,
+     "isl": 3,
+     "sea": 3,
+     "pct": 3.3,
+     "lo": 1.1,
+     "hi": 9.2
+    }
+   },
+   "east": {
+    "name": "Eastern Europe and the Balkans",
+    "all": {
+     "n": 1896,
+     "isl": 29,
+     "sea": 15,
+     "pct": 1.5,
+     "lo": 1.1,
+     "hi": 2.2
+    },
+    "undated": {
+     "n": 1052,
+     "isl": 15,
+     "sea": 6,
+     "pct": 1.4,
+     "lo": 0.9,
+     "hi": 2.3
+    },
+    "p1": {
+     "n": 2,
+     "isl": 0,
+     "sea": 0,
+     "pct": 0.0,
+     "lo": 0,
+     "hi": 65.8
+    },
+    "p2": {
+     "n": 24,
+     "isl": 0,
+     "sea": 0,
+     "pct": 0.0,
+     "lo": 0,
+     "hi": 13.8
+    },
+    "p3": {
+     "n": 67,
+     "isl": 0,
+     "sea": 0,
+     "pct": 0.0,
+     "lo": 0,
+     "hi": 5.4
+    },
+    "p4": {
+     "n": 751,
+     "isl": 14,
+     "sea": 9,
+     "pct": 1.9,
+     "lo": 1.1,
+     "hi": 3.1
+    },
+    "pre1100": {
+     "n": 26,
+     "isl": 0,
+     "sea": 0,
+     "pct": 0.0,
+     "lo": 0,
+     "hi": 12.9
+    },
+    "post1100": {
+     "n": 818,
+     "isl": 14,
+     "sea": 9,
+     "pct": 1.7,
+     "lo": 1.0,
+     "hi": 2.9
+    }
+   }
+  }
+ },
+ "regions": [
+  {
+   "k": "ireland",
+   "name": "Ireland",
+   "n": 321,
+   "isl": 24,
+   "sea": 16,
+   "pct": 7.5,
+   "lo": 5.1,
+   "hi": 10.9,
+   "dated": 164,
+   "dated_pct": 51.1,
+   "lake": 8,
+   "small": 12,
+   "p1": {
+    "n": 14,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 21.5
+   },
+   "p2": {
+    "n": 2,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 65.8
+   },
+   "p3": {
+    "n": 78,
+    "isl": 2,
+    "sea": 2,
+    "pct": 2.6,
+    "lo": 0.7,
+    "hi": 8.9
+   },
+   "p4": {
+    "n": 70,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 5.2
+   },
+   "pre1100": {
+    "n": 16,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 19.4
+   }
+  },
+  {
+   "k": "scotland",
+   "name": "Scotland",
+   "n": 89,
+   "isl": 11,
+   "sea": 9,
+   "pct": 12.4,
+   "lo": 7.0,
+   "hi": 20.8,
+   "dated": 48,
+   "dated_pct": 53.9,
+   "lake": 2,
+   "small": 7,
+   "p1": {
+    "n": 2,
+    "isl": 1,
+    "sea": 1,
+    "pct": 50.0,
+    "lo": 9.5,
+    "hi": 90.5
+   },
+   "p2": {
+    "n": 0,
+    "isl": 0,
+    "sea": 0,
+    "pct": null,
+    "lo": null,
+    "hi": null
+   },
+   "p3": {
+    "n": 40,
+    "isl": 4,
+    "sea": 2,
+    "pct": 10.0,
+    "lo": 4.0,
+    "hi": 23.1
+   },
+   "p4": {
+    "n": 6,
+    "isl": 1,
+    "sea": 1,
+    "pct": 16.7,
+    "lo": 3.0,
+    "hi": 56.4
+   },
+   "pre1100": {
+    "n": 2,
+    "isl": 1,
+    "sea": 1,
+    "pct": 50.0,
+    "lo": 9.5,
+    "hi": 90.5
+   }
+  },
+  {
+   "k": "wales",
+   "name": "Wales",
+   "n": 54,
+   "isl": 7,
+   "sea": 7,
+   "pct": 13.0,
+   "lo": 6.4,
+   "hi": 24.4,
+   "dated": 29,
+   "dated_pct": 53.7,
+   "lake": 0,
+   "small": 4,
+   "p1": {
+    "n": 2,
+    "isl": 2,
+    "sea": 2,
+    "pct": 100.0,
+    "lo": 34.2,
+    "hi": 100
+   },
+   "p2": {
+    "n": 1,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 79.3
+   },
+   "p3": {
+    "n": 23,
+    "isl": 1,
+    "sea": 1,
+    "pct": 4.3,
+    "lo": 0.8,
+    "hi": 21.0
+   },
+   "p4": {
+    "n": 3,
+    "isl": 1,
+    "sea": 1,
+    "pct": 33.3,
+    "lo": 6.1,
+    "hi": 79.2
+   },
+   "pre1100": {
+    "n": 3,
+    "isl": 2,
+    "sea": 2,
+    "pct": 66.7,
+    "lo": 20.8,
+    "hi": 93.9
+   }
+  },
+  {
+   "k": "england",
+   "name": "England, Man and the Channel Islands",
+   "n": 1202,
+   "isl": 11,
+   "sea": 11,
+   "pct": 0.9,
+   "lo": 0.5,
+   "hi": 1.6,
+   "dated": 464,
+   "dated_pct": 38.6,
+   "lake": 0,
+   "small": 4,
+   "p1": {
+    "n": 29,
+    "isl": 1,
+    "sea": 1,
+    "pct": 3.4,
+    "lo": 0.6,
+    "hi": 17.2
+   },
+   "p2": {
+    "n": 69,
+    "isl": 1,
+    "sea": 1,
+    "pct": 1.4,
+    "lo": 0.3,
+    "hi": 7.8
+   },
+   "p3": {
+    "n": 320,
+    "isl": 2,
+    "sea": 2,
+    "pct": 0.6,
+    "lo": 0.2,
+    "hi": 2.2
+   },
+   "p4": {
+    "n": 46,
+    "isl": 1,
+    "sea": 1,
+    "pct": 2.2,
+    "lo": 0.4,
+    "hi": 11.3
+   },
+   "pre1100": {
+    "n": 98,
+    "isl": 2,
+    "sea": 2,
+    "pct": 2.0,
+    "lo": 0.6,
+    "hi": 7.1
+   }
+  },
+  {
+   "k": "brittany",
+   "name": "Brittany",
+   "n": 133,
+   "isl": 1,
+   "sea": 1,
+   "pct": 0.8,
+   "lo": 0.1,
+   "hi": 4.1,
+   "dated": 40,
+   "dated_pct": 30.1,
+   "lake": 0,
+   "small": 1,
+   "p1": {
+    "n": 1,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 79.3
+   },
+   "p2": {
+    "n": 2,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 65.8
+   },
+   "p3": {
+    "n": 22,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0.0,
+    "hi": 14.9
+   },
+   "p4": {
+    "n": 15,
+    "isl": 1,
+    "sea": 1,
+    "pct": 6.7,
+    "lo": 1.2,
+    "hi": 29.8
+   },
+   "pre1100": {
+    "n": 3,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 56.2
+   }
+  },
+  {
+   "k": "france",
+   "name": "France (rest)",
+   "n": 2385,
+   "isl": 8,
+   "sea": 7,
+   "pct": 0.3,
+   "lo": 0.2,
+   "hi": 0.7,
+   "dated": 665,
+   "dated_pct": 27.9,
+   "lake": 1,
+   "small": 1,
+   "p1": {
+    "n": 54,
+    "isl": 2,
+    "sea": 1,
+    "pct": 3.7,
+    "lo": 1.0,
+    "hi": 12.5
+   },
+   "p2": {
+    "n": 94,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0.0,
+    "hi": 3.9
+   },
+   "p3": {
+    "n": 322,
+    "isl": 2,
+    "sea": 2,
+    "pct": 0.6,
+    "lo": 0.2,
+    "hi": 2.2
+   },
+   "p4": {
+    "n": 195,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 1.9
+   },
+   "pre1100": {
+    "n": 148,
+    "isl": 2,
+    "sea": 1,
+    "pct": 1.4,
+    "lo": 0.4,
+    "hi": 4.8
+   }
+  },
+  {
+   "k": "galicia",
+   "name": "Galicia",
+   "n": 100,
+   "isl": 1,
+   "sea": 1,
+   "pct": 1.0,
+   "lo": 0.2,
+   "hi": 5.4,
+   "dated": 26,
+   "dated_pct": 26.0,
+   "lake": 0,
+   "small": 1,
+   "p1": {
+    "n": 1,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 79.3
+   },
+   "p2": {
+    "n": 3,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 56.2
+   },
+   "p3": {
+    "n": 13,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 22.8
+   },
+   "p4": {
+    "n": 9,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 29.9
+   },
+   "pre1100": {
+    "n": 4,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 49.0
+   }
+  },
+  {
+   "k": "iberia",
+   "name": "Iberia (rest)",
+   "n": 1558,
+   "isl": 23,
+   "sea": 23,
+   "pct": 1.5,
+   "lo": 1.0,
+   "hi": 2.2,
+   "dated": 367,
+   "dated_pct": 23.6,
+   "lake": 0,
+   "small": 1,
+   "p1": {
+    "n": 7,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 35.4
+   },
+   "p2": {
+    "n": 26,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 12.9
+   },
+   "p3": {
+    "n": 84,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 4.4
+   },
+   "p4": {
+    "n": 250,
+    "isl": 3,
+    "sea": 3,
+    "pct": 1.2,
+    "lo": 0.4,
+    "hi": 3.5
+   },
+   "pre1100": {
+    "n": 33,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 10.4
+   }
+  },
+  {
+   "k": "natl",
+   "name": "Iceland and the Faroes",
+   "n": 3,
+   "isl": 0,
+   "sea": 0,
+   "pct": 0.0,
+   "lo": 0,
+   "hi": 56.2,
+   "dated": 2,
+   "dated_pct": 66.7,
+   "lake": 0,
+   "small": 0,
+   "p1": {
+    "n": 0,
+    "isl": 0,
+    "sea": 0,
+    "pct": null,
+    "lo": null,
+    "hi": null
+   },
+   "p2": {
+    "n": 0,
+    "isl": 0,
+    "sea": 0,
+    "pct": null,
+    "lo": null,
+    "hi": null
+   },
+   "p3": {
+    "n": 2,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 65.8
+   },
+   "p4": {
+    "n": 0,
+    "isl": 0,
+    "sea": 0,
+    "pct": null,
+    "lo": null,
+    "hi": null
+   },
+   "pre1100": {
+    "n": 0,
+    "isl": 0,
+    "sea": 0,
+    "pct": null,
+    "lo": null,
+    "hi": null
+   }
+  },
+  {
+   "k": "nordic",
+   "name": "Scandinavia and the Baltic",
+   "n": 213,
+   "isl": 14,
+   "sea": 12,
+   "pct": 6.6,
+   "lo": 4.0,
+   "hi": 10.7,
+   "dated": 98,
+   "dated_pct": 46.0,
+   "lake": 2,
+   "small": 9,
+   "p1": {
+    "n": 0,
+    "isl": 0,
+    "sea": 0,
+    "pct": null,
+    "lo": null,
+    "hi": null
+   },
+   "p2": {
+    "n": 7,
+    "isl": 1,
+    "sea": 1,
+    "pct": 14.3,
+    "lo": 2.6,
+    "hi": 51.3
+   },
+   "p3": {
+    "n": 48,
+    "isl": 2,
+    "sea": 2,
+    "pct": 4.2,
+    "lo": 1.2,
+    "hi": 14.0
+   },
+   "p4": {
+    "n": 43,
+    "isl": 1,
+    "sea": 1,
+    "pct": 2.3,
+    "lo": 0.4,
+    "hi": 12.1
+   },
+   "pre1100": {
+    "n": 7,
+    "isl": 1,
+    "sea": 1,
+    "pct": 14.3,
+    "lo": 2.6,
+    "hi": 51.3
+   }
+  },
+  {
+   "k": "central",
+   "name": "Central Europe and the Low Countries",
+   "n": 8346,
+   "isl": 26,
+   "sea": 12,
+   "pct": 0.3,
+   "lo": 0.2,
+   "hi": 0.5,
+   "dated": 3051,
+   "dated_pct": 36.6,
+   "lake": 14,
+   "small": 2,
+   "p1": {
+    "n": 81,
+    "isl": 3,
+    "sea": 0,
+    "pct": 3.7,
+    "lo": 1.3,
+    "hi": 10.3
+   },
+   "p2": {
+    "n": 257,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 1.5
+   },
+   "p3": {
+    "n": 933,
+    "isl": 2,
+    "sea": 2,
+    "pct": 0.2,
+    "lo": 0.1,
+    "hi": 0.8
+   },
+   "p4": {
+    "n": 1780,
+    "isl": 1,
+    "sea": 1,
+    "pct": 0.1,
+    "lo": 0.0,
+    "hi": 0.3
+   },
+   "pre1100": {
+    "n": 338,
+    "isl": 3,
+    "sea": 0,
+    "pct": 0.9,
+    "lo": 0.3,
+    "hi": 2.6
+   }
+  },
+  {
+   "k": "med",
+   "name": "Mediterranean",
+   "n": 3928,
+   "isl": 304,
+   "sea": 300,
+   "pct": 7.7,
+   "lo": 6.9,
+   "hi": 8.6,
+   "dated": 1273,
+   "dated_pct": 32.4,
+   "lake": 4,
+   "small": 60,
+   "p1": {
+    "n": 62,
+    "isl": 2,
+    "sea": 2,
+    "pct": 3.2,
+    "lo": 0.9,
+    "hi": 11.0
+   },
+   "p2": {
+    "n": 174,
+    "isl": 9,
+    "sea": 9,
+    "pct": 5.2,
+    "lo": 2.7,
+    "hi": 9.5
+   },
+   "p3": {
+    "n": 268,
+    "isl": 9,
+    "sea": 9,
+    "pct": 3.4,
+    "lo": 1.8,
+    "hi": 6.3
+   },
+   "p4": {
+    "n": 769,
+    "isl": 26,
+    "sea": 26,
+    "pct": 3.4,
+    "lo": 2.3,
+    "hi": 4.9
+   },
+   "pre1100": {
+    "n": 236,
+    "isl": 11,
+    "sea": 11,
+    "pct": 4.7,
+    "lo": 2.6,
+    "hi": 8.2
+   }
+  },
+  {
+   "k": "east",
+   "name": "Eastern Europe and the Balkans",
+   "n": 1896,
+   "isl": 29,
+   "sea": 15,
+   "pct": 1.5,
+   "lo": 1.1,
+   "hi": 2.2,
+   "dated": 844,
+   "dated_pct": 44.5,
+   "lake": 14,
+   "small": 5,
+   "p1": {
+    "n": 2,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 65.8
+   },
+   "p2": {
+    "n": 24,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 13.8
+   },
+   "p3": {
+    "n": 67,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 5.4
+   },
+   "p4": {
+    "n": 751,
+    "isl": 14,
+    "sea": 9,
+    "pct": 1.9,
+    "lo": 1.1,
+    "hi": 3.1
+   },
+   "pre1100": {
+    "n": 26,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 12.9
+   }
+  }
+ ],
+ "compare": {
+  "early_atl": {
+   "n": 28,
+   "isl": 3,
+   "sea": 3,
+   "pct": 10.7,
+   "lo": 3.7,
+   "hi": 27.2
+  },
+  "late_cont": {
+   "n": 3230,
+   "isl": 5,
+   "sea": 5,
+   "pct": 0.2,
+   "lo": 0.1,
+   "hi": 0.4
+  },
+  "ratio": 53,
+  "atl_pre800": {
+   "n": 20,
+   "isl": 3,
+   "sea": 3,
+   "pct": 15.0,
+   "lo": 5.2,
+   "hi": 36.0
+  },
+  "all_pre800": {
+   "n": 255,
+   "isl": 11,
+   "sea": 7,
+   "pct": 4.3,
+   "lo": 2.4,
+   "hi": 7.6
+  },
+  "all_p3": {
+   "n": 2220,
+   "isl": 24,
+   "sea": 22,
+   "pct": 1.1,
+   "lo": 0.7,
+   "hi": 1.6
+  },
+  "all_p4": {
+   "n": 3937,
+   "isl": 49,
+   "sea": 44,
+   "pct": 1.2,
+   "lo": 0.9,
+   "hi": 1.6
+  },
+  "atl_all": {
+   "n": 697,
+   "isl": 44,
+   "sea": 34,
+   "pct": 6.3,
+   "lo": 4.7,
+   "hi": 8.4
+  },
+  "cont_all": {
+   "n": 10731,
+   "isl": 34,
+   "sea": 19,
+   "pct": 0.3,
+   "lo": 0.2,
+   "hi": 0.4
+  },
+  "med_all": {
+   "n": 3928,
+   "isl": 304,
+   "sea": 300,
+   "pct": 7.7,
+   "lo": 6.9,
+   "hi": 8.6
+  },
+  "early_atl_names": [
+   [
+    450,
+    "Bardsey Abbey"
+   ],
+   [
+    450,
+    "Caldey Priory"
+   ],
+   [
+    563,
+    "Iona Abbey"
+   ]
+  ],
+  "pre800_isl_names": [
+   [
+    450,
+    "",
+    "ESP"
+   ],
+   [
+    450,
+    "Abbaye Saint-Honorat de Lérins",
+    "FRA"
+   ],
+   [
+    450,
+    "Bardsey Abbey",
+    "GBR"
+   ],
+   [
+    450,
+    "Caldey Priory",
+    "GBR"
+   ],
+   [
+    450,
+    "Priory of Douglas",
+    "IMN"
+   ],
+   [
+    450,
+    "abbaye de l'Île Barbe",
+    "FRA"
+   ],
+   [
+    563,
+    "Iona Abbey",
+    "GBR"
+   ],
+   [
+    620,
+    "Kloster Herrenchiemsee",
+    "DEU"
+   ],
+   [
+    709,
+    "Mont-Saint-Michel Abbey",
+    "FRA"
+   ],
+   [
+    724,
+    "Abbey of Reichenau",
+    "DEU"
+   ],
+   [
+    782,
+    "Frauenchiemsee convent",
+    "DEU"
+   ]
+  ],
+  "cont_lake": 15,
+  "med_grc_tur_pct": 83.22368421052632,
+  "isl_grc_tur_pct": 55.119825708061
+ },
+ "century": [
+  {
+   "n": 18,
+   "isl": 0,
+   "sea": 0,
+   "pct": 0.0,
+   "lo": 0,
+   "hi": 17.6,
+   "c": 300,
+   "atl": {
+    "n": 0,
+    "isl": 0,
+    "sea": 0,
+    "pct": null,
+    "lo": null,
+    "hi": null
+   },
+   "rest": {
+    "n": 18,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 17.6
+   }
+  },
+  {
+   "n": 18,
+   "isl": 6,
+   "sea": 5,
+   "pct": 33.3,
+   "lo": 16.3,
+   "hi": 56.3,
+   "c": 400,
+   "atl": {
+    "n": 4,
+    "isl": 2,
+    "sea": 2,
+    "pct": 50.0,
+    "lo": 15.0,
+    "hi": 85.0
+   },
+   "rest": {
+    "n": 14,
+    "isl": 4,
+    "sea": 3,
+    "pct": 28.6,
+    "lo": 11.7,
+    "hi": 54.6
+   }
+  },
+  {
+   "n": 41,
+   "isl": 1,
+   "sea": 1,
+   "pct": 2.4,
+   "lo": 0.4,
+   "hi": 12.6,
+   "c": 500,
+   "atl": {
+    "n": 10,
+    "isl": 1,
+    "sea": 1,
+    "pct": 10.0,
+    "lo": 1.8,
+    "hi": 40.4
+   },
+   "rest": {
+    "n": 31,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 11.0
+   }
+  },
+  {
+   "n": 84,
+   "isl": 1,
+   "sea": 0,
+   "pct": 1.2,
+   "lo": 0.2,
+   "hi": 6.4,
+   "c": 600,
+   "atl": {
+    "n": 6,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 39.0
+   },
+   "rest": {
+    "n": 78,
+    "isl": 1,
+    "sea": 0,
+    "pct": 1.3,
+    "lo": 0.2,
+    "hi": 6.9
+   }
+  },
+  {
+   "n": 94,
+   "isl": 3,
+   "sea": 1,
+   "pct": 3.2,
+   "lo": 1.1,
+   "hi": 9.0,
+   "c": 700,
+   "atl": {
+    "n": 0,
+    "isl": 0,
+    "sea": 0,
+    "pct": null,
+    "lo": null,
+    "hi": null
+   },
+   "rest": {
+    "n": 94,
+    "isl": 3,
+    "sea": 1,
+    "pct": 3.2,
+    "lo": 1.1,
+    "hi": 9.0
+   }
+  },
+  {
+   "n": 88,
+   "isl": 0,
+   "sea": 0,
+   "pct": 0.0,
+   "lo": 0.0,
+   "hi": 4.2,
+   "c": 800,
+   "atl": {
+    "n": 3,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 56.2
+   },
+   "rest": {
+    "n": 85,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 4.3
+   }
+  },
+  {
+   "n": 167,
+   "isl": 4,
+   "sea": 4,
+   "pct": 2.4,
+   "lo": 0.9,
+   "hi": 6.0,
+   "c": 900,
+   "atl": {
+    "n": 3,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 56.2
+   },
+   "rest": {
+    "n": 164,
+    "isl": 4,
+    "sea": 4,
+    "pct": 2.4,
+    "lo": 1.0,
+    "hi": 6.1
+   }
+  },
+  {
+   "n": 404,
+   "isl": 7,
+   "sea": 7,
+   "pct": 1.7,
+   "lo": 0.8,
+   "hi": 3.5,
+   "c": 1000,
+   "atl": {
+    "n": 2,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 65.8
+   },
+   "rest": {
+    "n": 402,
+    "isl": 7,
+    "sea": 7,
+    "pct": 1.7,
+    "lo": 0.8,
+    "hi": 3.6
+   }
+  },
+  {
+   "n": 1199,
+   "isl": 10,
+   "sea": 9,
+   "pct": 0.8,
+   "lo": 0.5,
+   "hi": 1.5,
+   "c": 1100,
+   "atl": {
+    "n": 113,
+    "isl": 3,
+    "sea": 2,
+    "pct": 2.7,
+    "lo": 0.9,
+    "hi": 7.5
+   },
+   "rest": {
+    "n": 1086,
+    "isl": 7,
+    "sea": 7,
+    "pct": 0.6,
+    "lo": 0.3,
+    "hi": 1.3
+   }
+  },
+  {
+   "n": 1021,
+   "isl": 14,
+   "sea": 13,
+   "pct": 1.4,
+   "lo": 0.8,
+   "hi": 2.3,
+   "c": 1200,
+   "atl": {
+    "n": 63,
+    "isl": 4,
+    "sea": 3,
+    "pct": 6.3,
+    "lo": 2.5,
+    "hi": 15.2
+   },
+   "rest": {
+    "n": 958,
+    "isl": 10,
+    "sea": 10,
+    "pct": 1.0,
+    "lo": 0.6,
+    "hi": 1.9
+   }
+  },
+  {
+   "n": 541,
+   "isl": 3,
+   "sea": 2,
+   "pct": 0.6,
+   "lo": 0.2,
+   "hi": 1.6,
+   "c": 1300,
+   "atl": {
+    "n": 20,
+    "isl": 1,
+    "sea": 1,
+    "pct": 5.0,
+    "lo": 0.9,
+    "hi": 23.6
+   },
+   "rest": {
+    "n": 521,
+    "isl": 2,
+    "sea": 1,
+    "pct": 0.4,
+    "lo": 0.1,
+    "hi": 1.4
+   }
+  },
+  {
+   "n": 547,
+   "isl": 5,
+   "sea": 4,
+   "pct": 0.9,
+   "lo": 0.4,
+   "hi": 2.1,
+   "c": 1400,
+   "atl": {
+    "n": 22,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0.0,
+    "hi": 14.9
+   },
+   "rest": {
+    "n": 525,
+    "isl": 5,
+    "sea": 4,
+    "pct": 1.0,
+    "lo": 0.4,
+    "hi": 2.2
+   }
+  },
+  {
+   "n": 386,
+   "isl": 11,
+   "sea": 10,
+   "pct": 2.8,
+   "lo": 1.6,
+   "hi": 5.0,
+   "c": 1500,
+   "atl": {
+    "n": 9,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 29.9
+   },
+   "rest": {
+    "n": 377,
+    "isl": 11,
+    "sea": 10,
+    "pct": 2.9,
+    "lo": 1.6,
+    "hi": 5.1
+   }
+  },
+  {
+   "n": 846,
+   "isl": 9,
+   "sea": 9,
+   "pct": 1.1,
+   "lo": 0.6,
+   "hi": 2.0,
+   "c": 1600,
+   "atl": {
+    "n": 7,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 35.4
+   },
+   "rest": {
+    "n": 839,
+    "isl": 9,
+    "sea": 9,
+    "pct": 1.1,
+    "lo": 0.6,
+    "hi": 2.0
+   }
+  },
+  {
+   "n": 529,
+   "isl": 7,
+   "sea": 7,
+   "pct": 1.3,
+   "lo": 0.6,
+   "hi": 2.7,
+   "c": 1700,
+   "atl": {
+    "n": 7,
+    "isl": 1,
+    "sea": 1,
+    "pct": 14.3,
+    "lo": 2.6,
+    "hi": 51.3
+   },
+   "rest": {
+    "n": 522,
+    "isl": 6,
+    "sea": 6,
+    "pct": 1.1,
+    "lo": 0.5,
+    "hi": 2.5
+   }
+  },
+  {
+   "n": 513,
+   "isl": 6,
+   "sea": 5,
+   "pct": 1.2,
+   "lo": 0.5,
+   "hi": 2.5,
+   "c": 1800,
+   "atl": {
+    "n": 29,
+    "isl": 1,
+    "sea": 1,
+    "pct": 3.4,
+    "lo": 0.6,
+    "hi": 17.2
+   },
+   "rest": {
+    "n": 484,
+    "isl": 5,
+    "sea": 4,
+    "pct": 1.0,
+    "lo": 0.4,
+    "hi": 2.4
+   }
+  },
+  {
+   "n": 494,
+   "isl": 8,
+   "sea": 7,
+   "pct": 1.6,
+   "lo": 0.8,
+   "hi": 3.2,
+   "c": 1900,
+   "atl": {
+    "n": 9,
+    "isl": 0,
+    "sea": 0,
+    "pct": 0.0,
+    "lo": 0,
+    "hi": 29.9
+   },
+   "rest": {
+    "n": 485,
+    "isl": 8,
+    "sea": 7,
+    "pct": 1.6,
+    "lo": 0.8,
+    "hi": 3.2
+   }
+  }
+ ],
+ "far": {
+  "top": [
+   {
+    "q": "Q17318732",
+    "name": "Convent of Carmo",
+    "c": "PRT",
+    "cname": "Portugal",
+    "d": 1656.4,
+    "y": null,
+    "yr": null,
+    "area": 178.468,
+    "lon": -28.62883,
+    "lat": 38.53873,
+    "r": "iberia"
+   },
+   {
+    "q": "Q5166195",
+    "name": "convent of São Pedro de Alcântara",
+    "c": "PRT",
+    "cname": "Portugal",
+    "d": 1629.9,
+    "y": null,
+    "yr": null,
+    "area": 456.23,
+    "lon": -28.31827,
+    "lat": 38.52309,
+    "r": "iberia"
+   },
+   {
+    "q": "Q5166192",
+    "name": "Convent of São Gonçalo",
+    "c": "PRT",
+    "cname": "Portugal",
+    "d": 1534.9,
+    "y": null,
+    "yr": null,
+    "area": 409.902,
+    "lon": -27.22325,
+    "lat": 38.6548,
+    "r": "iberia"
+   },
+   {
+    "q": "Q9871268",
+    "name": "Convent of Nossa Senhora da Esperança (Ponta Delgada)",
+    "c": "PRT",
+    "cname": "Portugal",
+    "d": 1411.8,
+    "y": null,
+    "yr": null,
+    "area": 767.329,
+    "lon": -25.67326,
+    "lat": 37.73819,
+    "r": "iberia"
+   },
+   {
+    "q": "Q66815793",
+    "name": "Convent of São Francisco",
+    "c": "PRT",
+    "cname": "Portugal",
+    "d": 1380.2,
+    "y": null,
+    "yr": null,
+    "area": 100.695,
+    "lon": -25.14342,
+    "lat": 36.95316,
+    "r": "iberia"
+   },
+   {
+    "q": "Q63895143",
+    "name": "Convento de São Bernardino",
+    "c": "PRT",
+    "cname": "Portugal",
+    "d": 666.5,
+    "y": null,
+    "yr": null,
+    "area": 747.998,
+    "lon": -16.97562,
+    "lat": 32.65378,
+    "r": "iberia"
+   },
+   {
+    "q": "Q43250996",
+    "name": "Monasterio Cisterciense de la Santísima Trinidad",
+    "c": "ESP",
+    "cname": "Spain",
+    "d": 443.9,
+    "y": null,
+    "yr": null,
+    "area": 715.322,
+    "lon": -17.78639,
+    "lat": 28.67833,
+    "r": "iberia"
+   },
+   {
+    "q": "Q113016430",
+    "name": "Monastery of St Ursula in Valletta",
+    "c": "MLT",
+    "cname": "Malta",
+    "d": 249.4,
+    "y": null,
+    "yr": null,
+    "area": 251.483,
+    "lon": 14.5154,
+    "lat": 35.89745,
+    "r": "med"
+   },
+   {
+    "q": "Q137899321",
+    "name": "(no English name)",
+    "c": "ESP",
+    "cname": "Spain",
+    "d": 240.6,
+    "y": 450,
+    "yr": 500,
+    "area": 13.173,
+    "lon": 2.9525,
+    "lat": 39.1458,
+    "r": "med"
+   },
+   {
+    "q": "Q11920587",
+    "name": "Església i convent de la Concepció",
+    "c": "ESP",
+    "cname": "Spain",
+    "d": 231.7,
+    "y": null,
+    "yr": null,
+    "area": 706.599,
+    "lon": 4.26417,
+    "lat": 39.89,
+    "r": "med"
+   },
+   {
+    "q": "Q112674568",
+    "name": "Moni Panagias Keras, Thirasia",
+    "c": "GRC",
+    "cname": "Greece",
+    "d": 178.3,
+    "y": null,
+    "yr": null,
+    "area": 10.32,
+    "lon": 25.35048,
+    "lat": 36.41299,
+    "r": "med"
+   },
+   {
+    "q": "Q108612769",
+    "name": "Agios Nikolaos Monastery",
+    "c": "GRC",
+    "cname": "Greece",
+    "d": 176.5,
+    "y": null,
+    "yr": null,
+    "area": 80.47,
+    "lon": 25.42615,
+    "lat": 36.42968,
+    "r": "med"
+   }
+  ],
+  "early": [
+   {
+    "q": "Q137899321",
+    "name": "(no English name)",
+    "c": "ESP",
+    "cname": "Spain",
+    "d": 240.6,
+    "y": 450,
+    "yr": 500,
+    "area": 13.173,
+    "lon": 2.9525,
+    "lat": 39.1458,
+    "r": "med"
+   },
+   {
+    "q": "Q2738728",
+    "name": "Hozoviotissa monastery",
+    "c": "GRC",
+    "cname": "Greece",
+    "d": 121.0,
+    "y": 1088,
+    "yr": 1088,
+    "area": 130.945,
+    "lon": 25.9095,
+    "lat": 36.8346,
+    "r": "med"
+   },
+   {
+    "q": "Q6898330",
+    "name": "Monastery of Saint George, Skyros",
+    "c": "GRC",
+    "cname": "Greece",
+    "d": 87.7,
+    "y": 950,
+    "yr": 901,
+    "area": 213.278,
+    "lon": 24.5676,
+    "lat": 38.9059,
+    "r": "med"
+   },
+   {
+    "q": "Q1476797",
+    "name": "Rushen Abbey",
+    "c": "IMN",
+    "cname": "Isle of Man",
+    "d": 61.1,
+    "y": 1150,
+    "yr": 1101,
+    "area": 580.618,
+    "lon": -4.63455,
+    "lat": 54.09889,
+    "r": "england"
+   },
+   {
+    "q": "Q7245519",
+    "name": "Priory of Douglas",
+    "c": "IMN",
+    "cname": "Isle of Man",
+    "d": 58.7,
+    "y": 450,
+    "yr": 401,
+    "area": 580.618,
+    "lon": -4.4947,
+    "lat": 54.1484,
+    "r": "england"
+   },
+   {
+    "q": "Q1982506",
+    "name": "Monastery of Saint John the Theologian",
+    "c": "GRC",
+    "cname": "Greece",
+    "d": 56.6,
+    "y": 1050,
+    "yr": 1001,
+    "area": 37.511,
+    "lon": 26.54805,
+    "lat": 37.30919,
+    "r": "med"
+   },
+   {
+    "q": "Q82249",
+    "name": "Iona Nunnery",
+    "c": "GBR",
+    "cname": "United Kingdom",
+    "d": 38.5,
+    "y": 1250,
+    "yr": 1201,
+    "area": 8.973,
+    "lon": -6.39403,
+    "lat": 56.33129,
+    "r": "scotland"
+   },
+   {
+    "q": "Q198409",
+    "name": "Iona Abbey",
+    "c": "GBR",
+    "cname": "United Kingdom",
+    "d": 38.1,
+    "y": 563,
+    "yr": 563,
+    "area": 8.973,
+    "lon": -6.39138,
+    "lat": 56.335,
+    "r": "scotland"
+   }
+  ],
+  "atl": [
+   {
+    "q": "Q2282409",
+    "name": "Cille Bharra",
+    "c": "GBR",
+    "cname": "United Kingdom",
+    "d": 81.0,
+    "y": null,
+    "yr": null,
+    "area": 62.944,
+    "lon": -7.43433,
+    "lat": 57.03949,
+    "r": "scotland"
+   },
+   {
+    "q": "Q18291600",
+    "name": "(no English name)",
+    "c": "FIN",
+    "cname": "Finland",
+    "d": 72.1,
+    "y": null,
+    "yr": null,
+    "area": 0.637,
+    "lon": 20.87833,
+    "lat": 59.94472,
+    "r": "nordic"
+   },
+   {
+    "q": "Q140811941",
+    "name": "(no English name)",
+    "c": "FIN",
+    "cname": "Finland",
+    "d": 71.8,
+    "y": null,
+    "yr": null,
+    "area": 0.637,
+    "lon": 20.87773,
+    "lat": 59.94813,
+    "r": "nordic"
+   },
+   {
+    "q": "Q124540172",
+    "name": "Golgotha Monastery",
+    "c": "GBR",
+    "cname": "United Kingdom",
+    "d": 62.0,
+    "y": null,
+    "yr": null,
+    "area": 1.133,
+    "lon": -2.58,
+    "lat": 59.15,
+    "r": "scotland"
+   },
+   {
+    "q": "Q1476797",
+    "name": "Rushen Abbey",
+    "c": "IMN",
+    "cname": "Isle of Man",
+    "d": 61.1,
+    "y": 1150,
+    "yr": 1101,
+    "area": 580.618,
+    "lon": -4.63455,
+    "lat": 54.09889,
+    "r": "england"
+   },
+   {
+    "q": "Q7245519",
+    "name": "Priory of Douglas",
+    "c": "IMN",
+    "cname": "Isle of Man",
+    "d": 58.7,
+    "y": 450,
+    "yr": 401,
+    "area": 580.618,
+    "lon": -4.4947,
+    "lat": 54.1484,
+    "r": "england"
+   },
+   {
+    "q": "Q17762512",
+    "name": "(no English name)",
+    "c": "NOR",
+    "cname": "Norway",
+    "d": 55.3,
+    "y": null,
+    "yr": null,
+    "area": 440.241,
+    "lon": 13.7643,
+    "lat": 68.1553,
+    "r": "nordic"
+   },
+   {
+    "q": "Q17678484",
+    "name": "Tresco Priory",
+    "c": "GBR",
+    "cname": "United Kingdom",
+    "d": 45.6,
+    "y": null,
+    "yr": null,
+    "area": 3.56,
+    "lon": -6.33013,
+    "lat": 49.94744,
+    "r": "england"
+   },
+   {
+    "q": "Q57273193",
+    "name": "(no English name)",
+    "c": "DNK",
+    "cname": "Denmark",
+    "d": 40.3,
+    "y": 1966,
+    "yr": 1966,
+    "area": 600.021,
+    "lon": 14.7755,
+    "lat": 55.2284,
+    "r": "nordic"
+   },
+   {
+    "q": "Q82249",
+    "name": "Iona Nunnery",
+    "c": "GBR",
+    "cname": "United Kingdom",
+    "d": 38.5,
+    "y": 1250,
+    "yr": 1201,
+    "area": 8.973,
+    "lon": -6.39403,
+    "lat": 56.33129,
+    "r": "scotland"
+   }
+  ],
+  "macaronesia_n": 22,
+  "over100_n": 72,
+  "median_sea": 24.35,
+  "skellig": {
+   "q": "Q105159796",
+   "name": "monastery of Skellig Michael",
+   "c": "IRL",
+   "cname": "Ireland",
+   "d": 12.3,
+   "y": null,
+   "yr": null,
+   "area": 0.496,
+   "lon": -10.54056,
+   "lat": 51.77111,
+   "r": "ireland"
+  },
+  "iona": {
+   "q": "Q198409",
+   "name": "Iona Abbey",
+   "c": "GBR",
+   "cname": "United Kingdom",
+   "d": 38.1,
+   "y": 563,
+   "yr": 563,
+   "area": 8.973,
+   "lon": -6.39138,
+   "lat": 56.335,
+   "r": "scotland"
+  },
+  "big_top": [
+   {
+    "q": "Q1955782",
+    "name": "Þingeyraklaustur",
+    "c": "ISL",
+    "cname": "Iceland",
+    "d": 1100.0,
+    "y": 1133,
+    "yr": 1133,
+    "area": null,
+    "lon": -20.41667,
+    "lat": 65.55389,
+    "r": "natl"
+   },
+   {
+    "q": "Q3480382",
+    "name": "Munkaþverá",
+    "c": "ISL",
+    "cname": "Iceland",
+    "d": 1018.1,
+    "y": 1150,
+    "yr": 1101,
+    "area": null,
+    "lon": -18.08268,
+    "lat": 65.54551,
+    "r": "natl"
+   },
+   {
+    "q": "Q335756",
+    "name": "Abbey of Þykkvabær",
+    "c": "ISL",
+    "cname": "Iceland",
+    "d": 892.6,
+    "y": null,
+    "yr": null,
+    "area": null,
+    "lon": -18.3643,
+    "lat": 63.5029,
+    "r": "natl"
+   },
+   {
+    "q": "Q56293766",
+    "name": "(no English name)",
+    "c": "ESP",
+    "cname": "Spain",
+    "d": 345.0,
+    "y": null,
+    "yr": null,
+    "area": null,
+    "lon": -16.81724,
+    "lat": 28.36521,
+    "r": "iberia"
+   },
+   {
+    "q": "Q28548578",
+    "name": "(no English name)",
+    "c": "ESP",
+    "cname": "Spain",
+    "d": 341.7,
+    "y": null,
+    "yr": null,
+    "area": null,
+    "lon": -16.76341,
+    "lat": 28.37457,
+    "r": "iberia"
+   },
+   {
+    "q": "Q115462055",
+    "name": "Convento de San Francisco",
+    "c": "ESP",
+    "cname": "Spain",
+    "d": 341.7,
+    "y": null,
+    "yr": null,
+    "area": null,
+    "lon": -16.76433,
+    "lat": 28.37312,
+    "r": "iberia"
+   }
+  ],
+  "isl_n": 3,
+  "lake_top": [
+   {
+    "q": "Q4113289",
+    "name": "Saint Vladimir Skete (Valaam)",
+    "c": "RUS",
+    "cname": "Russia",
+    "d": 24.6,
+    "y": null,
+    "yr": null,
+    "area": 27.827,
+    "lon": 30.93562,
+    "lat": 61.37291,
+    "r": "east"
+   },
+   {
+    "q": "Q60606494",
+    "name": "Gethsemane Skete of Valaam Monastery",
+    "c": "RUS",
+    "cname": "Russia",
+    "d": 23.7,
+    "y": null,
+    "yr": null,
+    "area": 27.827,
+    "lon": 30.90221,
+    "lat": 61.37021,
+    "r": "east"
+   },
+   {
+    "q": "Q1421396",
+    "name": "Valaam Monastery",
+    "c": "RUS",
+    "cname": "Russia",
+    "d": 23.6,
+    "y": 1407,
+    "yr": 1407,
+    "area": 27.827,
+    "lon": 30.94423,
+    "lat": 61.38874,
+    "r": "east"
+   },
+   {
+    "q": "Q61670647",
+    "name": "Smolensky Skete of Valaam Monastery",
+    "c": "RUS",
+    "cname": "Russia",
+    "d": 23.6,
+    "y": 1917,
+    "yr": 1917,
+    "area": 27.827,
+    "lon": 30.92271,
+    "lat": 61.37974,
+    "r": "east"
+   },
+   {
+    "q": "Q60605632",
+    "name": "Resurrection Skete of Valaam Monastery",
+    "c": "RUS",
+    "cname": "Russia",
+    "d": 23.1,
+    "y": null,
+    "yr": null,
+    "area": 27.827,
+    "lon": 30.89123,
+    "lat": 61.37294,
+    "r": "east"
+   }
+  ]
+ },
+ "dissolution": {
+  "n": 2944,
+  "pct": 14.554083448684992,
+  "top_years": [
+   [
+    1538,
+    201
+   ],
+   [
+    1536,
+    192
+   ],
+   [
+    1539,
+    176
+   ],
+   [
+    1802,
+    171
+   ],
+   [
+    1791,
+    151
+   ],
+   [
+    1803,
+    135
+   ],
+   [
+    1540,
+    84
+   ],
+   [
+    1790,
+    73
+   ],
+   [
+    1810,
+    58
+   ],
+   [
+    1835,
+    57
+   ],
+   [
+    1537,
+    57
+   ],
+   [
+    1806,
+    46
+   ]
+  ],
+  "by_decade": [
+   [
+    770,
+    1
+   ],
+   [
+    780,
+    1
+   ],
+   [
+    830,
+    2
+   ],
+   [
+    850,
+    4
+   ],
+   [
+    870,
+    2
+   ],
+   [
+    880,
+    1
+   ],
+   [
+    950,
+    2
+   ],
+   [
+    1000,
+    2
+   ],
+   [
+    1010,
+    1
+   ],
+   [
+    1040,
+    1
+   ],
+   [
+    1060,
+    3
+   ],
+   [
+    1070,
+    3
+   ],
+   [
+    1080,
+    4
+   ],
+   [
+    1100,
+    3
+   ],
+   [
+    1110,
+    1
+   ],
+   [
+    1120,
+    1
+   ],
+   [
+    1140,
+    1
+   ],
+   [
+    1160,
+    2
+   ],
+   [
+    1170,
+    3
+   ],
+   [
+    1190,
+    1
+   ],
+   [
+    1200,
+    4
+   ],
+   [
+    1210,
+    3
+   ],
+   [
+    1220,
+    6
+   ],
+   [
+    1230,
+    3
+   ],
+   [
+    1240,
+    3
+   ],
+   [
+    1250,
+    8
+   ],
+   [
+    1260,
+    4
+   ],
+   [
+    1270,
+    10
+   ],
+   [
+    1280,
+    3
+   ],
+   [
+    1290,
+    6
+   ],
+   [
+    1300,
+    12
+   ],
+   [
+    1310,
+    5
+   ],
+   [
+    1320,
+    7
+   ],
+   [
+    1330,
+    1
+   ],
+   [
+    1340,
+    2
+   ],
+   [
+    1350,
+    8
+   ],
+   [
+    1360,
+    2
+   ],
+   [
+    1370,
+    6
+   ],
+   [
+    1380,
+    3
+   ],
+   [
+    1390,
+    6
+   ],
+   [
+    1400,
+    4
+   ],
+   [
+    1410,
+    9
+   ],
+   [
+    1420,
+    8
+   ],
+   [
+    1430,
+    10
+   ],
+   [
+    1440,
+    8
+   ],
+   [
+    1450,
+    10
+   ],
+   [
+    1460,
+    5
+   ],
+   [
+    1470,
+    9
+   ],
+   [
+    1480,
+    9
+   ],
+   [
+    1490,
+    14
+   ],
+   [
+    1500,
+    7
+   ],
+   [
+    1510,
+    11
+   ],
+   [
+    1520,
+    96
+   ],
+   [
+    1530,
+    715
+   ],
+   [
+    1540,
+    147
+   ],
+   [
+    1550,
+    87
+   ],
+   [
+    1560,
+    63
+   ],
+   [
+    1570,
+    50
+   ],
+   [
+    1580,
+    37
+   ],
+   [
+    1590,
+    22
+   ],
+   [
+    1600,
+    24
+   ],
+   [
+    1610,
+    10
+   ],
+   [
+    1620,
+    8
+   ],
+   [
+    1630,
+    14
+   ],
+   [
+    1640,
+    23
+   ],
+   [
+    1650,
+    6
+   ],
+   [
+    1660,
+    8
+   ],
+   [
+    1670,
+    3
+   ],
+   [
+    1680,
+    6
+   ],
+   [
+    1690,
+    2
+   ],
+   [
+    1700,
+    7
+   ],
+   [
+    1710,
+    1
+   ],
+   [
+    1720,
+    3
+   ],
+   [
+    1740,
+    4
+   ],
+   [
+    1750,
+    1
+   ],
+   [
+    1760,
+    28
+   ],
+   [
+    1770,
+    32
+   ],
+   [
+    1780,
+    67
+   ],
+   [
+    1790,
+    307
+   ],
+   [
+    1800,
+    446
+   ],
+   [
+    1810,
+    123
+   ],
+   [
+    1820,
+    18
+   ],
+   [
+    1830,
+    113
+   ],
+   [
+    1840,
+    13
+   ],
+   [
+    1850,
+    5
+   ],
+   [
+    1860,
+    16
+   ],
+   [
+    1870,
+    5
+   ],
+   [
+    1880,
+    4
+   ],
+   [
+    1890,
+    5
+   ],
+   [
+    1900,
+    12
+   ],
+   [
+    1910,
+    25
+   ],
+   [
+    1920,
+    39
+   ],
+   [
+    1930,
+    17
+   ],
+   [
+    1940,
+    20
+   ],
+   [
+    1950,
+    6
+   ],
+   [
+    1960,
+    7
+   ],
+   [
+    1970,
+    10
+   ],
+   [
+    1980,
+    7
+   ],
+   [
+    1990,
+    1
+   ]
+  ],
+  "waves": {
+   "dissolution_ew": 614,
+   "dissolution_ew_all": 639,
+   "reform_scot": 5,
+   "scot_all": 11,
+   "ireland_1536_1600": 36,
+   "ireland_all": 41,
+   "france_rev": 245,
+   "france_all": 300,
+   "german_1802_1811": 492,
+   "josephine_1780_1790": 36,
+   "spain_1835_1837": 71,
+   "portugal_1834": 11,
+   "reformation_1520_1599": 1217,
+   "rev_1780_1815": 922,
+   "viking": 4,
+   "viking_all": 18
+  },
+  "ew_pct": 96.08763693270735,
+  "france_rev_pct": 81.66666666666667,
+  "reform_rev_pct": 72.65625,
+  "viking_list": [
+   [
+    830,
+    "",
+    "mainland",
+    "DEU"
+   ],
+   [
+    834,
+    "",
+    "mainland",
+    "DEU"
+   ],
+   [
+    850,
+    "Oroër Abbey",
+    "mainland",
+    "FRA"
+   ],
+   [
+    852,
+    "Monastery of Tábanos",
+    "mainland",
+    "ESP"
+   ],
+   [
+    855,
+    "",
+    "mainland",
+    "DEU"
+   ],
+   [
+    855,
+    "",
+    "mainland",
+    "DEU"
+   ],
+   [
+    873,
+    "Corbion Abbey",
+    "mainland",
+    "FRA"
+   ],
+   [
+    878,
+    "Monastery of Saint-André d'Eixalada",
+    "mainland",
+    "FRA"
+   ],
+   [
+    882,
+    "Kloster St. Symphorian",
+    "mainland",
+    "DEU"
+   ],
+   [
+    950,
+    "Nantus Abbey",
+    "mainland",
+    "FRA"
+   ],
+   [
+    956,
+    "",
+    "mainland",
+    "DEU"
+   ],
+   [
+    1000,
+    "Berg im Donaugau Abbey",
+    "mainland",
+    "DEU"
+   ],
+   [
+    1006,
+    "Benedictine monastery Arneburg",
+    "mainland",
+    "DEU"
+   ],
+   [
+    1015,
+    "Memleben Abbey",
+    "mainland",
+    "DEU"
+   ],
+   [
+    1046,
+    "Kollegiatstift St. Epiphanius",
+    "mainland",
+    "DEU"
+   ],
+   [
+    1066,
+    "",
+    "mainland",
+    "DEU"
+   ],
+   [
+    1066,
+    "",
+    "mainland",
+    "DEU"
+   ],
+   [
+    1066,
+    "Benediktinerkloster Ratzeburg",
+    "mainland",
+    "DEU"
+   ]
+  ],
+  "isl_pct": 4.357298474945534,
+  "main_pct": 14.792330652096929,
+  "isl_ruin_pct": 11.546840958605664,
+  "main_ruin_pct": 17.913694541407395,
+  "ruin_n": 821,
+  "ended_n": 3594,
+  "isl_med_dis": 1541.0,
+  "main_med_dis": 1602.0,
+  "ended_pct": 17.76745105793949,
+  "atl_isl_n": 55,
+  "atl_isl_ended": 28,
+  "isl_nongt_pct": 9.70873786407767
+ },
+ "kinds": [
+  {
+   "k": "monastery",
+   "name": "Monastery",
+   "n": 13024,
+   "isl": 385,
+   "pct": 3.0
+  },
+  {
+   "k": "abbey",
+   "name": "Abbey",
+   "n": 2296,
+   "isl": 24,
+   "pct": 1.0
+  },
+  {
+   "k": "priory",
+   "name": "Priory",
+   "n": 1308,
+   "isl": 12,
+   "pct": 0.9
+  },
+  {
+   "k": "convent",
+   "name": "Convent or nunnery",
+   "n": 2751,
+   "isl": 23,
+   "pct": 0.8
+  },
+  {
+   "k": "friary",
+   "name": "Friary",
+   "n": 300,
+   "isl": 7,
+   "pct": 2.3
+  },
+  {
+   "k": "hermitage",
+   "name": "Hermitage",
+   "n": 549,
+   "isl": 8,
+   "pct": 1.5
+  }
+ ],
+ "kinds_by": {
+  "monastery": {
+   "n": 13024,
+   "isl": 385,
+   "pct": 2.956081081081081
+  },
+  "abbey": {
+   "n": 2296,
+   "isl": 24,
+   "pct": 1.0452961672473868
+  },
+  "priory": {
+   "n": 1308,
+   "isl": 12,
+   "pct": 0.9174311926605505
+  },
+  "convent": {
+   "n": 2751,
+   "isl": 23,
+   "pct": 0.8360596146855689
+  },
+  "friary": {
+   "n": 300,
+   "isl": 7,
+   "pct": 2.3333333333333335
+  },
+  "hermitage": {
+   "n": 549,
+   "isl": 8,
+   "pct": 1.4571948998178506
+  }
+ },
+ "sens": {
+  "p1": {
+   "n": 240,
+   "isl": 11,
+   "sea": 7,
+   "pct": 4.6,
+   "lo": 2.6,
+   "hi": 8.0
+  },
+  "p2": {
+   "n": 621,
+   "isl": 11,
+   "sea": 11,
+   "pct": 1.8,
+   "lo": 1.0,
+   "hi": 3.1
+  },
+  "p3": {
+   "n": 2176,
+   "isl": 22,
+   "sea": 20,
+   "pct": 1.0,
+   "lo": 0.7,
+   "hi": 1.5
+  },
+  "p4": {
+   "n": 4034,
+   "isl": 51,
+   "sea": 46,
+   "pct": 1.3,
+   "lo": 1.0,
+   "hi": 1.7
+  },
+  "atl_pre1100": {
+   "n": 28,
+   "isl": 3,
+   "sea": 3,
+   "pct": 10.7,
+   "lo": 3.7,
+   "hi": 27.2
+  },
+  "cont_post1100": {
+   "n": 3247,
+   "isl": 5,
+   "sea": 5,
+   "pct": 0.2,
+   "lo": 0.1,
+   "hi": 0.4
+  },
+  "exact_p1": {
+   "n": 97,
+   "isl": 5,
+   "sea": 2,
+   "pct": 5.2,
+   "lo": 2.2,
+   "hi": 11.5
+  },
+  "exact_p2": {
+   "n": 325,
+   "isl": 5,
+   "sea": 5,
+   "pct": 1.5,
+   "lo": 0.7,
+   "hi": 3.6
+  },
+  "exact_p3": {
+   "n": 1450,
+   "isl": 14,
+   "sea": 14,
+   "pct": 1.0,
+   "lo": 0.6,
+   "hi": 1.6
+  },
+  "exact_p4": {
+   "n": 3188,
+   "isl": 42,
+   "sea": 37,
+   "pct": 1.3,
+   "lo": 1.0,
+   "hi": 1.8
+  },
+  "small_only_p1": 2.4,
+  "small_only_p4": 0.2,
+  "any_p1": 5.5,
+  "any_p4": 3.2,
+  "no_override_n": 441
+ },
+ "best": [
+  {
+   "q": "Q740076",
+   "name": "Nea Moni of Chios",
+   "c": "GRC",
+   "cname": "Greece",
+   "y": 1050,
+   "yr": 1001,
+   "sl": 39,
+   "cls": "island",
+   "d": 17.9,
+   "area": 855.123,
+   "r": "med"
+  },
+  {
+   "q": "Q1140434",
+   "name": "Solovetsky Monastery",
+   "c": "RUS",
+   "cname": "Russia",
+   "y": 1450,
+   "yr": 1401,
+   "sl": 36,
+   "cls": "island",
+   "d": 36.5,
+   "area": 238.681,
+   "r": "east"
+  },
+  {
+   "q": "Q1982506",
+   "name": "Monastery of Saint John the Theologian",
+   "c": "GRC",
+   "cname": "Greece",
+   "y": 1050,
+   "yr": 1001,
+   "sl": 33,
+   "cls": "island",
+   "d": 56.6,
+   "area": 37.511,
+   "r": "med"
+  },
+  {
+   "q": "Q1421396",
+   "name": "Valaam Monastery",
+   "c": "RUS",
+   "cname": "Russia",
+   "y": 1407,
+   "yr": 1407,
+   "sl": 27,
+   "cls": "lake",
+   "d": 23.6,
+   "area": 27.827,
+   "r": "east"
+  },
+  {
+   "q": "Q679114",
+   "name": "Abbey of Reichenau",
+   "c": "DEU",
+   "cname": "Germany",
+   "y": 724,
+   "yr": 724,
+   "sl": 22,
+   "cls": "lake",
+   "d": 1.6,
+   "area": 3.759,
+   "r": "central"
+  },
+  {
+   "q": "Q198409",
+   "name": "Iona Abbey",
+   "c": "GBR",
+   "cname": "United Kingdom",
+   "y": 563,
+   "yr": 563,
+   "sl": 21,
+   "cls": "small",
+   "d": 38.1,
+   "area": 8.973,
+   "r": "scotland"
+  },
+  {
+   "q": "Q651388",
+   "name": "Mont-Saint-Michel Abbey",
+   "c": "FRA",
+   "cname": "France",
+   "y": 709,
+   "yr": 709,
+   "sl": 21,
+   "cls": "small",
+   "d": 0.5,
+   "area": 0.089,
+   "r": "france"
+  },
+  {
+   "q": "Q334008",
+   "name": "Abbaye Saint-Honorat de Lérins",
+   "c": "FRA",
+   "cname": "France",
+   "y": 450,
+   "yr": 401,
+   "sl": 16,
+   "cls": "small",
+   "d": 3.7,
+   "area": 0.709,
+   "r": "med"
+  },
+  {
+   "q": "Q1349993",
+   "name": "Blaca",
+   "c": "HRV",
+   "cname": "Croatia",
+   "y": 1551,
+   "yr": 1551,
+   "sl": 13,
+   "cls": "island",
+   "d": 18.6,
+   "area": 404.137,
+   "r": "med"
+  },
+  {
+   "q": "Q1992239",
+   "name": "Stolobny Island",
+   "c": "RUS",
+   "cname": "Russia",
+   "y": 1594,
+   "yr": 1594,
+   "sl": 11,
+   "cls": "lake",
+   "d": 2.9,
+   "area": 24.218,
+   "r": "east"
+  },
+  {
+   "q": "Q2596678",
+   "name": "Konevsky Monastery",
+   "c": "RUS",
+   "cname": "Russia",
+   "y": 1393,
+   "yr": 1393,
+   "sl": 11,
+   "cls": "lake",
+   "d": 3.8,
+   "area": 10.538,
+   "r": "east"
+  },
+  {
+   "q": "Q3320338",
+   "name": "San Giorgio Monastery",
+   "c": "ITA",
+   "cname": "Italy",
+   "y": 982,
+   "yr": 982,
+   "sl": 10,
+   "cls": "small",
+   "d": 0.5,
+   "area": 0.093,
+   "r": "med"
+  }
+ ],
+ "median_sl": 1.0,
+ "best_mainland_median_sl": 1,
+ "best_island_median_sl": 1,
+ "lindis": {
+  "y": 1093,
+  "bardsey_d": 1537
+ }
+}

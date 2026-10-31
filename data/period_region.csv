@@ -1,0 +1,66 @@
+region,period,houses,on_islands,pct,ci_low,ci_high
+Ireland,Before 800,14,0,0.0,0,21.5
+Ireland,800 to 1099,2,0,0.0,0,65.8
+Ireland,1100 to 1299,78,2,2.6,0.7,8.9
+Ireland,1300 and later,70,0,0.0,0,5.2
+Ireland,"All, dated or not",321,24,7.5,5.1,10.9
+Scotland,Before 800,2,1,50.0,9.5,90.5
+Scotland,800 to 1099,0,0,,,
+Scotland,1100 to 1299,40,4,10.0,4.0,23.1
+Scotland,1300 and later,6,1,16.7,3.0,56.4
+Scotland,"All, dated or not",89,11,12.4,7.0,20.8
+Wales,Before 800,2,2,100.0,34.2,100
+Wales,800 to 1099,1,0,0.0,0,79.3
+Wales,1100 to 1299,23,1,4.3,0.8,21.0
+Wales,1300 and later,3,1,33.3,6.1,79.2
+Wales,"All, dated or not",54,7,13.0,6.4,24.4
+"England, Man and the Channel Islands",Before 800,29,1,3.4,0.6,17.2
+"England, Man and the Channel Islands",800 to 1099,69,1,1.4,0.3,7.8
+"England, Man and the Channel Islands",1100 to 1299,320,2,0.6,0.2,2.2
+"England, Man and the Channel Islands",1300 and later,46,1,2.2,0.4,11.3
+"England, Man and the Channel Islands","All, dated or not",1202,11,0.9,0.5,1.6
+Brittany,Before 800,1,0,0.0,0,79.3
+Brittany,800 to 1099,2,0,0.0,0,65.8
+Brittany,1100 to 1299,22,0,0.0,0.0,14.9
+Brittany,1300 and later,15,1,6.7,1.2,29.8
+Brittany,"All, dated or not",133,1,0.8,0.1,4.1
+France (rest),Before 800,54,2,3.7,1.0,12.5
+France (rest),800 to 1099,94,0,0.0,0.0,3.9
+France (rest),1100 to 1299,322,2,0.6,0.2,2.2
+France (rest),1300 and later,195,0,0.0,0,1.9
+France (rest),"All, dated or not",2385,8,0.3,0.2,0.7
+Galicia,Before 800,1,0,0.0,0,79.3
+Galicia,800 to 1099,3,0,0.0,0,56.2
+Galicia,1100 to 1299,13,0,0.0,0,22.8
+Galicia,1300 and later,9,0,0.0,0,29.9
+Galicia,"All, dated or not",100,1,1.0,0.2,5.4
+Iberia (rest),Before 800,7,0,0.0,0,35.4
+Iberia (rest),800 to 1099,26,0,0.0,0,12.9
+Iberia (rest),1100 to 1299,84,0,0.0,0,4.4
+Iberia (rest),1300 and later,250,3,1.2,0.4,3.5
+Iberia (rest),"All, dated or not",1558,23,1.5,1.0,2.2
+Iceland and the Faroes,Before 800,0,0,,,
+Iceland and the Faroes,800 to 1099,0,0,,,
+Iceland and the Faroes,1100 to 1299,2,0,0.0,0,65.8
+Iceland and the Faroes,1300 and later,0,0,,,
+Iceland and the Faroes,"All, dated or not",3,0,0.0,0,56.2
+Scandinavia and the Baltic,Before 800,0,0,,,
+Scandinavia and the Baltic,800 to 1099,7,1,14.3,2.6,51.3
+Scandinavia and the Baltic,1100 to 1299,48,2,4.2,1.2,14.0
+Scandinavia and the Baltic,1300 and later,43,1,2.3,0.4,12.1
+Scandinavia and the Baltic,"All, dated or not",213,14,6.6,4.0,10.7
+Central Europe and the Low Countries,Before 800,81,3,3.7,1.3,10.3
+Central Europe and the Low Countries,800 to 1099,257,0,0.0,0,1.5
+Central Europe and the Low Countries,1100 to 1299,933,2,0.2,0.1,0.8
+Central Europe and the Low Countries,1300 and later,1780,1,0.1,0.0,0.3
+Central Europe and the Low Countries,"All, dated or not",8346,26,0.3,0.2,0.5
+Mediterranean,Before 800,62,2,3.2,0.9,11.0
+Mediterranean,800 to 1099,174,9,5.2,2.7,9.5
+Mediterranean,1100 to 1299,268,9,3.4,1.8,6.3
+Mediterranean,1300 and later,769,26,3.4,2.3,4.9
+Mediterranean,"All, dated or not",3928,304,7.7,6.9,8.6
+Eastern Europe and the Balkans,Before 800,2,0,0.0,0,65.8
+Eastern Europe and the Balkans,800 to 1099,24,0,0.0,0,13.8
+Eastern Europe and the Balkans,1100 to 1299,67,0,0.0,0,5.4
+Eastern Europe and the Balkans,1300 and later,751,14,1.9,1.1,3.1
+Eastern Europe and the Balkans,"All, dated or not",1896,29,1.5,1.1,2.2

@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Holy Islands</title>
+<meta name="description" content="Island monasteries in Europe: {{coverage.n|int}} monastic houses from Wikidata checked against a detailed shoreline, mapped by century of foundation, with the furthest from the mainland and when they were dissolved.">
+<meta property="og:title" content="Holy islands: monks, hermits and the edge of the world">
+<meta property="og:description" content="{{islands.n|int}} of {{coverage.n|int}} monastic houses in Europe stand on islands. The early ones went to sea far more often: {{compare.all_pre800.pct|f1}}% of houses dated before 800, about 1% after 1100.">
+<meta property="og:image" content="https://maps.tristanhotham.com/holy-islands/header.png">
+<meta property="og:url" content="https://maps.tristanhotham.com/holy-islands/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+/* Sea and stone: pale shell paper, slate ink, Atlantic blue and lichen rust. Setting colours are set in the script. */
+:root{
+  --bg:#F5F2EA; --panel:#EAE6DB; --fg:#1D2A31; --muted:#5E6A70; --rule:#DCD5C6; --card:#FFFDF8; --border:#CCC4B3;
+  --hot:#B8462E; --cool:#1F5E7A; --gold:#B88A2E; --land:#E3DDCF; --sea:#EEF1EE;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#15171B; --panel:#1F2228; --fg:#ECE8E1; --muted:#A3A7AE; --rule:#33373E; --card:#1B1E23; --border:#454A52;
+  --hot:#E07A5F; --cool:#6FB1D0; --gold:#E9C46A; --land:#262A31; --sea:#191C21; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#15171B; --panel:#1F2228; --fg:#ECE8E1; --muted:#A3A7AE; --rule:#33373E; --card:#1B1E23; --border:#454A52;
+  --hot:#E07A5F; --cool:#6FB1D0; --gold:#E9C46A; --land:#262A31; --sea:#191C21; color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 18px/1.62 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+.wrap{max-width:700px;margin:0 auto;padding-block:28px 64px}
+.wrap .bleed{width:min(1180px,calc(100vw - 32px));margin-left:calc((100% - min(1180px,100vw - 32px))/2);margin-right:0}
+a{color:inherit;text-decoration-color:var(--hot);text-underline-offset:3px}
+.kicker{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.kicker b{background:var(--cool);color:#fff;padding:5px 8px;font-weight:500}
+header.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 24px;align-items:end;border-bottom:6px double var(--fg);padding-bottom:22px;margin-top:18px}
+h1{font:900 clamp(46px,11.5vw,104px)/.9 var(--display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1 .a{color:var(--cool)} h1 .b{color:var(--hot)}
+.mark{width:clamp(70px,15vw,118px);color:var(--fg);height:auto;display:block}
+.dek{grid-column:1/-1;font-size:21px;line-height:1.42;margin:8px 0 0;max-width:54ch}
+.byline{font:400 13px/1.4 var(--mono);color:var(--muted);margin-top:14px}
+h2{font:800 34px/1.04 var(--display);letter-spacing:-.01em;margin:54px 0 10px;text-wrap:balance}
+h2 .n{font:500 13px/1 var(--mono);color:var(--hot);display:block;letter-spacing:.1em;margin-bottom:10px}
+h3{font:600 20px/1.25 var(--display);margin:28px 0 6px}
+p{margin:0 0 16px}
+.lede::first-letter{font:900 72px/.8 var(--display);float:left;margin:6px 10px 0 0;color:var(--cool)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:26px 0 8px}
+.stats div{background:var(--card);padding:14px 12px}
+.stats b{display:block;font:900 clamp(22px,4.4vw,32px)/1 var(--display);letter-spacing:-.01em}
+.stats b.h{color:var(--hot)} .stats b.c{color:var(--cool)} .stats b.g{color:var(--gold)}
+.stats span{font:400 12px/1.35 var(--mono);color:var(--muted);display:block;margin-top:6px}
+@media (max-width:600px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.figure{margin:26px 0 30px}
+.fig-h{font:600 19px/1.25 var(--display);margin:0 0 4px}
+.fig-sub{font:400 13px/1.45 var(--mono);color:var(--muted);margin:0 0 12px}
+.src{font:400 12px/1.45 var(--mono);color:var(--muted);margin-top:10px}
+.chart{width:100%;position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{font-family:var(--mono);fill:var(--fg)}
+.lab{font-size:12px}.lab.m{fill:var(--muted)}.lab.b{font-weight:500}.lab.s{font-size:11px}
+.tip{position:absolute;pointer-events:none;background:var(--fg);color:var(--bg);font:400 12px/1.45 var(--mono);padding:8px 10px;border-radius:3px;max-width:300px;z-index:100500;transform:translate(-50%,calc(-100% - 12px));display:none}
+.tip b{font-weight:500}
+.controls{display:flex;gap:8px;align-items:center;margin:0 0 10px;flex-wrap:wrap}
+.scrollrow{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:2px;max-width:100%}
+.scrollrow .btn{flex:0 0 auto;white-space:nowrap}
+.ctl-l{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px;flex:0 0 auto;align-self:center}
+.btn{font:500 12px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:8px 10px;cursor:pointer;min-height:36px}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn:focus-visible,input:focus-visible,summary:focus-visible,select:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+.searchbox{position:relative;flex:1 1 260px;min-width:0}
+input[type=search]{font:400 15px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:10px 11px;min-height:40px;width:100%}
+.suggest{position:absolute;left:0;right:0;top:100%;margin:2px 0 0;padding:0;list-style:none;background:var(--card);border:1px solid var(--border);z-index:1001;font:400 13px/1.3 var(--mono);display:none;max-height:340px;overflow:auto}
+.suggest li{padding:8px 10px;cursor:pointer;border-bottom:1px solid var(--rule)}
+.suggest li span{color:var(--muted)}
+.suggest li[aria-selected="true"],.suggest li:hover{background:var(--panel)}
+.timebar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);padding:10px 12px;margin:0 0 10px;border-radius:3px}
+.timebar .yr{font:900 30px/1 var(--display);min-width:5.6em;color:var(--cool)}
+.timebar .yr small{display:block;font:400 11px/1.3 var(--mono);color:var(--muted);margin-top:4px}
+.timebar input[type=range]{flex:1 1 220px;accent-color:var(--cool);min-width:160px}
+.play{width:42px;height:42px;border-radius:50%;border:1px solid var(--fg);background:var(--fg);color:var(--bg);cursor:pointer;font:600 15px/1 var(--mono);flex:0 0 auto}
+.play:disabled{opacity:.35;cursor:default}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start}
+@media (max-width:900px){.mapgrid{grid-template-columns:1fr}}
+.side{background:var(--card);border:1px solid var(--border);padding:12px 12px 10px;font:400 13px/1.45 var(--mono);max-height:680px;overflow:auto}
+@media (max-width:900px){.side{max-height:none}}
+.side h4{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px}
+.side h4:first-child{margin-top:2px}
+.side .big{font:800 24px/1.12 var(--display);margin:2px 0 6px}
+.side .sub{color:var(--muted);font-size:12px;margin:0 0 8px}
+.side table{width:100%;border-collapse:collapse;margin:4px 0 6px}
+.side td{padding:4px 4px 4px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.side td.num{text-align:right;white-space:nowrap}
+.fbar{display:grid;grid-template-columns:minmax(0,1fr) 54px;gap:2px 8px;align-items:center;margin:0 0 3px;cursor:pointer}
+.fbar .l{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fbar .t{grid-column:1/-1;height:6px;background:var(--rule);border-radius:2px;overflow:hidden}
+.fbar .t i{display:block;height:100%}
+.fbar .v{text-align:right;color:var(--muted)}
+.fbar.off{opacity:.38}
+.chip{display:inline-block;font:500 11px/1 var(--mono);padding:4px 7px;border-radius:999px;color:#fff;margin:0 4px 4px 0}
+.chip.o{background:transparent!important;color:var(--fg);border:1px solid var(--border)}
+.back{font:400 12px var(--mono);background:none;border:0;color:var(--muted);padding:0;cursor:pointer;text-decoration:underline;margin-bottom:6px}
+.sw{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px;border:1px solid rgba(0,0,0,.15)}
+.lmap{height:640px;border:1px solid var(--border);background:var(--sea);border-radius:2px}
+@media (max-width:600px){.lmap{height:min(66vh,480px)}}
+.leaflet-container{font:400 12px/1.4 var(--mono);background:var(--sea)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card);color:var(--fg)}
+.leaflet-popup-content{font:400 12.5px/1.45 var(--mono);margin:12px 14px}
+.leaflet-popup-content table{border-collapse:collapse;margin:4px 0}.leaflet-popup-content td{padding:2px 8px 2px 0;vertical-align:top;border-bottom:1px solid var(--rule)}.leaflet-popup-content td:first-child{color:var(--muted)}
+.leaflet-popup-content b.nm{display:block;font:700 16px/1.2 var(--display);margin-bottom:4px}
+.leaflet-container a.leaflet-popup-close-button{color:var(--muted)}
+.lyrBtn{background:var(--card,var(--bg));color:var(--fg);border:1px solid var(--border);border-radius:3px;font:600 12px/1 var(--mono);padding:8px 10px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.lyrBtn[aria-expanded="true"]{background:var(--fg);color:var(--bg)}
+.lyrPanel{background:var(--card,var(--bg));color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:10px 12px 8px;margin-top:6px;width:250px;box-shadow:0 2px 10px rgba(0,0,0,.15);font:400 12px/1.3 var(--mono);max-height:min(70vh,520px);overflow:auto}
+.lyrPanel[hidden]{display:none}
+.lyrPanel .row{margin:0 0 9px}
+.lyrPanel label{display:flex;gap:6px;align-items:center;cursor:pointer;font-weight:600}
+.lyrPanel input[type=range]{width:100%;accent-color:var(--fg)}
+.lyrPanel select{font:400 12px var(--mono);background:var(--bg);color:var(--fg);border:1px solid var(--border);border-radius:2px;padding:2px 4px;width:100%;min-height:0}
+.lyrPanel .sub{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:11px;margin-top:3px}
+.lyrPanel .sub span{flex:0 0 58px}
+.lyrPanel .hd{font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 7px;border-top:1px solid var(--rule);padding-top:9px}
+.lyrPanel .reset{font:400 11px var(--mono);color:var(--muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+.cityL{font:500 11px/1 var(--mono);color:var(--fg);white-space:nowrap;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 2px var(--bg);pointer-events:none}
+.cityL i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--fg);margin-right:4px;vertical-align:1px}
+.cityL.s{font-size:10px;font-weight:400}
+.cntL{font:700 11px/1 var(--mono);color:var(--fg);white-space:nowrap;text-transform:uppercase;letter-spacing:.06em;opacity:.75;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg);pointer-events:none;text-align:center}
+.mapnote{background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--border);border-radius:3px;padding:6px 9px;font:400 12px/1.35 var(--mono);max-width:min(320px,62vw);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.mapnote b{font-weight:600}
+.mapnote:empty{display:none}
+.leaflet-bar a,.leaflet-bar a:hover{background:var(--card);color:var(--fg);border-bottom-color:var(--border)}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--card) 85%,transparent)!important;color:var(--muted)}
+.leaflet-control-attribution a{color:var(--fg)}
+.legend{display:flex;gap:6px;flex-wrap:wrap;font:400 12px/1.3 var(--mono);margin-top:10px}
+.legend button{font:400 12px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:999px;padding:6px 9px 6px 7px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:30px}
+.legend button i{width:11px;height:11px;border-radius:50%;display:inline-block;flex:0 0 auto}
+.legend button[aria-pressed="false"]{opacity:.4;text-decoration:line-through}
+.legend .all{border-style:dashed}
+.pull{font:600 26px/1.25 var(--display);border-left:6px solid var(--cool);padding:4px 0 4px 18px;margin:30px 0}
+.note{background:var(--panel);border:1px solid var(--rule);padding:14px 16px;font-size:16px;margin:22px 0}
+.note h3{margin-top:0}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:20px 0}
+@media (max-width:760px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:440px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-top:7px solid var(--c,var(--hot));padding:10px 12px;font:400 12px/1.45 var(--mono);cursor:pointer;text-align:left;color:var(--fg)}
+.card:hover{background:var(--panel)}
+.card .fam{color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-size:10.5px}
+.card b{font:700 17px/1.2 var(--display);display:block;margin:4px 0 2px}
+.card span{color:var(--muted)}
+details{margin:14px 0}
+summary{font:500 13px/1.4 var(--mono);cursor:pointer;color:var(--fg);padding:8px 0}
+.ftable{width:100%;border-collapse:collapse;font:400 12.5px/1.4 var(--mono)}
+.ftable td,.ftable th{padding:6px 6px 6px 0;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+.ftable th{font-weight:500;color:var(--muted)}
+.ftable td.num{text-align:right;white-space:nowrap}
+.tscroll{overflow-x:auto}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.cta a{font:500 13px/1 var(--mono);text-decoration:none;border:1px solid var(--fg);padding:11px 14px;border-radius:3px}
+.cta a.p{background:var(--cool);border-color:var(--cool);color:#fff}
+footer{border-top:6px double var(--fg);margin-top:56px;padding-top:16px;font:400 13px/1.55 var(--mono);color:var(--muted)}
+footer p{margin:0 0 10px}
+.theme{position:fixed;right:12px;bottom:12px;z-index:1002}
+@media print{.theme,.controls,.timebar{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kicker"><b>Data study</b><span>Religion and landscape</span><span>Europe, 2026</span></div>
+<header class="hero">
+  <h1>Holy <span class="b">islands</span></h1>
+  <svg class="mark" viewBox="0 0 100 120" aria-hidden="true"><g id="heroMark"></g></svg>
+  <p class="dek">Monks, hermits and the edge of the world. Of {{coverage.n|int}} monasteries, abbeys, priories and hermitages in Europe that Wikidata can place on a map, {{islands.n|int}} stand on islands. Which ones, from when, and how far out to sea?</p>
+</header>
+<div class="byline">Dr Tristan Hotham · Independent researcher · 2026 · Data: Wikidata (CC0), via QLever; GSHHG shorelines; Natural Earth</div>
+
+<div class="stats">
+  <div><b class="c">{{coverage.n|int}}</b><span>monastic houses in Europe with a location in Wikidata</span></div>
+  <div><b class="h">{{islands.pct|f1}}%</b><span>stand on islands under 1,000 km², at sea or in lakes and rivers</span></div>
+  <div><b class="g">{{compare.all_pre800.pct|f1}}%</b><span>of houses dated before 800 are on islands, against {{compare.all_p3.pct|f1}}% for 1100 to 1299</span></div>
+  <div><b>{{coverage.dated_pct|pc}}</b><span>have a foundation date, so the time slider sees only a third</span></div>
+</div>
+
+<p class="lede">In the sixth and seventh centuries monks from Ireland and Britain went looking for a desert in the ocean. They found it on Iona and Lindisfarne, on Bardsey and Caldey, and on Skellig Michael, a rock twelve kilometres off Kerry where they built stone beehive cells on ledges above the Atlantic. Further south the same idea had already taken root on the Lérins islands off Cannes, and later it would carry hermits to the Faroes and Iceland. An island was a cloister made by God: cut off, hard to reach, close to the edge of the known world.</p>
+<p>How unusual was that, really? Wikidata, the open database behind Wikipedia, records {{coverage.n|int}} monasteries, abbeys, priories, convents, friaries and hermitages in Europe with coordinates. I checked every one against a detailed world shoreline to see whether it stands on an island, how big the island is and how far it lies from the mainland, and lined that up against when each house was founded and when it was dissolved. Slide through the centuries, keep only the islands, search for a place or a house, and click any dot.</p>
+
+<h2><span class="n">01 · The map</span>Every monastic house, and the islands</h2>
+<div class="bleed" id="atlas">
+<div class="timebar">
+  <button class="play" id="play" aria-label="Play through the centuries" title="Play through the centuries">▶</button>
+  <div class="yr" id="yrLab">All dates<small>every house, dated or not</small></div>
+  <input type="range" id="slider" min="0" max="16" step="1" value="16" aria-label="Century of foundation">
+  <div class="scrollrow" id="timeRow"><span class="ctl-l">Time</span><button class="btn" data-t="all" aria-pressed="true">All dates</button><button class="btn" data-t="century" aria-pressed="false">Founded that century</button><button class="btn" data-t="upto" aria-pressed="false">Founded by then</button></div>
+</div>
+<div class="controls">
+  <div class="scrollrow" id="islRow"><span class="ctl-l">Show</span><button class="btn" data-i="all" aria-pressed="true">All houses</button><button class="btn" data-i="isl" aria-pressed="false">Islands only</button></div>
+  <div class="searchbox"><input type="search" id="q" placeholder="Search a place, a country or a house" aria-label="Search a place, a country or a house" autocomplete="off"><ul class="suggest" id="sug" role="listbox"></ul></div>
+</div>
+<div class="controls">
+  <div class="scrollrow" id="focusRow"><span class="ctl-l">Zoom to</span></div>
+</div>
+<div class="mapgrid">
+  <div><div id="map" class="lmap" role="application" aria-label="Map of monastic houses in Europe coloured by whether they stand on an island"></div>
+    <div class="legend" id="legend" aria-label="Settings: click to show or hide"></div></div>
+  <div class="side" id="side" aria-live="polite"></div>
+</div>
+<p class="src">Each dot is a Wikidata item that is a monastery, abbey, priory, convent, friary, hermitage or clochán (or a subclass of one) with coordinates, coloured by its setting. Islands are judged against the GSHHG full-resolution shoreline: islands under 1,000 km² count as islands; continental Europe, Great Britain, Ireland and bigger islands (Iceland, Sicily, Sardinia, Crete, Mallorca and so on) count as mainland. Dates are Wikidata's inception (P571), with round-century dates read as the middle of the century. Source: Wikidata (CC0) via QLever, retrieved in {{meta.retrieved|raw}}; GSHHG (LGPL); Natural Earth. Base map tiles © Esri.</p>
+</div>
+
+<h2><span class="n">02 · Through time</span>The early houses went to sea</h2>
+<p>Only {{coverage.dated_n|int}} houses ({{coverage.dated_pct|pc}}) have a foundation date in Wikidata, so the time comparison rests on a third of the map. Within that third the pattern is clear. Of the {{compare.all_pre800.n|int}} houses dated before 800, {{compare.all_pre800.isl|int}} ({{compare.all_pre800.pct|f1}}%) are on islands: Lérins and Cabrera in the Mediterranean, Bardsey, Caldey, Iona, Douglas on Man and Mont-Saint-Michel on the Atlantic side, and Reichenau, the two Chiemsee islands and the Île Barbe in lakes and rivers. From 1100 to 1299, the great age of Cistercians, canons and friars, the share falls to {{compare.all_p3.pct|f1}}% of {{compare.all_p3.n|int}} houses, and it stays near that level ({{compare.all_p4.pct|f1}}%) afterwards.</p>
+<div class="figure"><p class="fig-h">Share of dated houses on islands, by date of foundation</p><p class="fig-sub">Dots: share on islands (sea, lake or river, under 1,000 km²). Lines: 95% intervals. The Atlantic Celtic edge is Ireland, Scotland, Wales, Brittany and Galicia. Hover for counts.</p><div class="chart" id="perChart"></div></div>
+<p>The Atlantic edge is where the habit was strongest. Of the {{compare.early_atl.n|int}} dated houses founded there before 1100, {{compare.early_atl.isl|int}} are on islands ({{compare.early_atl.pct|pc}}, though with so few the true figure could lie anywhere from {{compare.early_atl.lo|pc}} to {{compare.early_atl.hi|pc}}). Of the {{compare.late_cont.n|int}} houses founded in France and Central Europe from 1100 on, just {{compare.late_cont.isl|int}} are ({{compare.late_cont.pct|f1}}%). So yes: the early Atlantic foundations chose islands far more often than the later Continental ones. The caveat is the size of the early sample, and the next section shows why it is so small.</p>
+<div class="figure"><p class="fig-h">Island share by century of foundation</p><p class="fig-sub">All Europe. Bars: dated houses per century (right scale); line: share on islands. Click a century to show it on the map.</p><div class="chart" id="centChart"></div></div>
+
+<h2><span class="n">03 · Where</span>Scotland, Wales and the Aegean</h2>
+<p>Counting every house, dated or not, the island share is highest in Wales ({{regions.2.pct|f1}}%) and Scotland ({{regions.1.pct|f1}}%), then the Mediterranean ({{regions.11.pct|f1}}%) and Ireland ({{regions.0.pct|f1}}%). The Mediterranean has by far the most island houses, {{regions.11.isl|int}}, {{compare.med_grc_tur_pct|pc}} of them on the Greek and Turkish islands of the Aegean and the Sea of Marmara, most of them Orthodox monasteries. France and Central Europe, which hold over half the houses in the data, have almost none ({{compare.cont_all.pct|f1}}%), and {{compare.cont_lake|int}} of their {{compare.cont_all.isl|int}} island houses are in lakes and rivers, such as Reichenau on Lake Constance and the two islands of the Chiemsee.</p>
+<div class="figure"><p class="fig-h">Share of monastic houses on islands, by region</p><p class="fig-sub">All houses, dated or not. Red: the Atlantic Celtic edge. Green: islands in lakes and rivers. Hover for counts.</p><div class="chart" id="regChart"></div></div>
+<p>Lakes and rivers have their own holy islands: {{islands.lake_n|int}} houses in all, from Valaam on Lake Ladoga and the Irish loughs (Inis Cealtra on Lough Derg, Inchcleraun on Lough Ree, Inchagoill on Lough Corrib) to Margaret Island in the Danube at Budapest.</p>
+<div class="cta"><a href="#atlas" data-go="atl">The Atlantic edge on the map</a><a href="#atlas" data-go="aeg">The Aegean islands</a><a href="#atlas" data-go="lad">Valaam and Lake Ladoga</a></div>
+
+<h2><span class="n">04 · How far</span>The furthest from the mainland</h2>
+<p>Measured to the nearest point of continental Europe, Africa, Great Britain or Ireland, half of the sea-island houses are within {{far.median_sea|int}} km of it. The furthest are the convents of the Azores, founded after Portugal settled the islands in the 1400s: the Convent of Carmo at Horta is {{far.top.0.d|int}} km from the mainland. Madeira, the Canaries and Malta follow. On the big islands that this study counts as mainland, Iceland's monasteries are further still: Þingeyrar, founded in {{far.big_top.0.y|raw}}, is {{far.big_top.0.d|int}} km from the nearest mainland coast.</p>
+<div class="figure"><p class="fig-h">Island houses furthest from the mainland</p><p class="fig-sub">One house per island; with Skellig Michael and Iona for scale. Click a bar to find the house.</p><div class="chart" id="farChart"></div></div>
+<p>The Celtic holy islands are, by comparison, close in: Skellig Michael is {{far.skellig.d|f1}} km off Kerry and Iona {{far.iona.d|int}} km from the Scottish mainland, though both feel much further in a small boat. In Britain and Ireland the furthest out is Cille Bharra on Barra in the Outer Hebrides, {{far.atl.0.d|int}} km from the mainland. Iceland's papar, the Irish hermits said to have been there before the Norse, and the early hermits of the Faroes do not appear in Wikidata as monasteries at all: Iceland and the Faroes have just {{coverage.natl_n|int}} houses between them.</p>
+
+<h2><span class="n">05 · The end</span>Dissolved, abandoned, and when</h2>
+<p>{{dissolution.n|int}} houses ({{dissolution.pct|pc}}) have a date when they were dissolved or abandoned. The dates come in waves. {{dissolution.waves.dissolution_ew|int}} fall in England and Wales between 1536 and 1541, Henry VIII's Dissolution of the Monasteries: {{dissolution.ew_pct|pc}} of all the dated closures there. {{dissolution.waves.france_rev|int}} French houses closed in the Revolution (1789 to 1795) and {{dissolution.waves.german_1802_1811|int}} in the German lands in the secularisations of 1802 to 1811. The Reformation century (1520 to 1599) and the revolutionary era (1780 to 1815) between them hold {{dissolution.reform_rev_pct|pc}} of every dated closure.</p>
+<div class="figure"><p class="fig-h">When houses were dissolved or abandoned</p><p class="fig-sub">Houses with a Wikidata dissolution date, by decade. Hover for counts.</p><div class="chart" id="disChart"></div></div>
+<p>The Viking age, which fell first and hardest on the island monasteries (Lindisfarne in 793, Iona from 795), barely registers: {{dissolution.waves.viking_all|int}} closures dated between 793 and 1066, none on an island. That is a gap in the record, not in history. Wikidata's entries mostly describe the houses that were later refounded and later dissolved: Lindisfarne Priory is the Benedictine cell of {{lindis.y|raw}}, and Bardsey Abbey's dissolution date is {{lindis.bardsey_d|raw}}. Island houses are less often recorded as closed: {{dissolution.isl_pct|f1}}% have a date, against {{dissolution.main_pct|f1}}% on the mainland. Many are Greek and Turkish island monasteries with no recorded closure, but even leaving those out the figure is only {{dissolution.isl_nongt_pct|f1}}%.</p>
+
+<h2><span class="n">06 · Famous ones</span>The best-known island houses</h2>
+<p>Wikidata counts how many Wikipedias have an article about each house. The best documented island houses are Nea Moni on Chios ({{best.0.sl|int}} articles), Solovetsky in the White Sea and the Monastery of Saint John on Patmos; then Valaam, Reichenau, Iona and Mont-Saint-Michel. Click a card to find it on the map.</p>
+<div class="cards" id="cards"></div>
+
+<h2><span class="n">07 · The gaps</span>A map of who keeps records</h2>
+<p>This is a map of Wikidata, not of medieval monasticism. Germany alone has {{coverage.deu_pct|pc}} of the houses. Ireland, with thousands of early church sites in its national monuments record, has {{coverage.irl_n|int}} here, and Skellig Michael itself has no foundation date. Coverage per head ranges from {{coverage.per_m_top.0.per_m|int}} houses per million people in {{coverage.per_m_top.0.name|raw}} to under {{coverage.per_m_low.4.per_m|int}} in Norway, Ukraine, Hungary, Turkey and Finland. Dating is thin too: {{coverage.dated_pct|pc}} of houses have a foundation date, and {{coverage.rc_pct|pc}} of those dates are only to the century.</p>
+<div class="figure"><p class="fig-h">Where the houses are, and how many are dated</p><p class="fig-sub">Houses by country (top 15), and the share with a foundation date by region.</p><div class="chart" id="covChart"></div><div class="chart" id="datChart" style="margin-top:14px"></div></div>
+<p class="pull">Before 800, {{compare.all_pre800.pct|f1}}% of dated monastic houses stood on islands. After 1100, about 1%.</p>
+
+<h2><span class="n">08 · How I did this</span>Methods and caveats</h2>
+<p><b>Houses.</b> Every Wikidata item that is an instance of a subclass of monastery, abbey, priory, hermitage or clochán and has coordinates, retrieved through QLever in {{meta.retrieved|raw}}: {{meta.n_items_world|int}} items worldwide. I kept those in Europe (with Iceland, the Faroes, the Azores, Madeira, the Canaries, Cyprus and Turkey) and dropped {{meta.excluded_class|int}} items that are only wayside shrines, lodgings, town houses of abbeys or Buddhist monasteries, leaving {{coverage.n|int}}. Region comes from the country and the Natural Earth province; the Atlantic Celtic edge is Ireland (north and south), Scotland, Wales, historic Brittany and Galicia.</p>
+<p><b>Islands.</b> Each house was placed on the GSHHG full-resolution shoreline, which includes islets as small as Skellig Michael. A point in the sea within {{meta.snap_km|f1}} km of land goes to that land. An island is land under 1,000 km²; Great Britain, Ireland and every bigger island are treated as mainland, as their houses were not choosing an island in any meaningful sense (counting them as islands lifts the share to {{islands.any_pct|f1}}%). Islands under 25 km², the classic holy island, hold {{islands.small_n|int}} houses. The shoreline misses many small lake and river islands, so I checked by hand every house whose name says island (Inis, Inch, Ynys, Isle, Île, Insel and so on) and moved {{islands.n_override|int}} onto islands; inland islands are still probably undercounted. Distances are to the nearest continental Europe, Africa, Great Britain or Ireland coast, or for lake islands to the lake shore.</p>
+<p><b>Dates.</b> Inception is the date a house was founded, which for a refounded house may be its last foundation rather than its first. Wikidata stores a century as a full date (the 12th century as 1101 or 1100), so years ending in 01 or 00 on 1 January are read as the middle of that century. Reading a 00 year as the century it begins instead (1100 as the 12th century) leaves the early Atlantic share at {{sens.atl_pre1100.pct|f1}}% and moves the all-Europe shares by a few tenths of a point ({{sens.p1.pct|f1}}% before 800, {{sens.p3.pct|f1}}% for 1100 to 1299). Intervals are Wilson 95% intervals.</p>
+<p><b>What this is not.</b> Not a census of monasteries: coverage depends on which national lists have been loaded into Wikidata, early sites are often filed as churches or archaeological sites rather than monasteries, and labels are mostly English. Counts compare records, not religious history.</p>
+<details><summary>Island share by region and period</summary><div class="tscroll" id="regTable"></div></details>
+<details><summary>Sources and licences</summary>
+<ul>
+<li>Wikidata (https://www.wikidata.org/), queried through QLever (https://qlever.cs.uni-freiburg.de/wikidata), retrieved in {{meta.retrieved|raw}}. CC0.</li>
+<li>GSHHG, the Global Self-consistent, Hierarchical, High-resolution Geography database (Wessel and Smith), full resolution, as packaged in basemap-data-hires. LGPL-3.0. Island outlines on the map are simplified from it.</li>
+<li>Natural Earth countries, provinces and populated places (public domain).</li>
+<li>Base map tiles © Esri.</li>
+</ul></details>
+
+<div class="cta"><a class="p" href="https://doi.org/{{DOI}}">Read the paper</a><a href="https://github.com/Tristan-Hotham/holy-islands">Data and code</a><a href="https://blog.tristanhotham.com/2026/10/31/holy-islands/">Blog post</a><a href="https://blog.tristanhotham.com/">Blog home</a></div>
+
+<footer>
+<p>Dr Tristan Hotham, Independent researcher. ORCID <a href="https://orcid.org/0000-0003-4931-9349">0000-0003-4931-9349</a>.</p>
+<p>Cite as: Hotham, T. (2026) Holy islands: monks, hermits and the edge of the world. Island monasteries in Wikidata, mapped through time. Zenodo. <a href="https://doi.org/{{DOI}}">https://doi.org/{{DOI}}</a></p>
+<p>Data and code: <a href="https://github.com/Tristan-Hotham/holy-islands">github.com/Tristan-Hotham/holy-islands</a>. Licence: data and text CC BY 4.0, code MIT. Wikidata is CC0; GSHHG-derived outlines are LGPL-3.0.</p>
+<p>I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.</p>
+</footer>
+</div>
+<div class="tip" id="tip"></div>
+<button class="btn theme" id="theme" aria-label="Toggle dark mode">◐</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const R = /*RESULTS*/;
+const SITE = /*SITE*/;
+const WORLD = /*WORLD*/;
+const CITIES = /*CITIES*/;
+const fmt = n => n == null || n === "" ? "n/a" : Math.round(n).toLocaleString("en-GB");
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const tip = document.getElementById("tip");
+function showTip(h, x, y) { tip.innerHTML = h; tip.style.display = "block"; const w = tip.offsetWidth; x = Math.max(w / 2 + 8, Math.min(innerWidth - w / 2 - 8, x)); tip.style.left = x + scrollX + "px"; tip.style.top = y + scrollY + "px"; }
+function hideTip() { tip.style.display = "none"; }
+document.addEventListener("click", hideTip);
+const NS = "http://www.w3.org/2000/svg";
+const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+const lbl = (svg, x, y, s, cls = "lab", anchor = "start") => { const t = el("text", { x, y, class: cls, "text-anchor": anchor }, svg); t.textContent = s; return t; };
+const redraws = [];
+function resp(box, render) { let last = 0; const go = force => { const w = Math.max(280, Math.round(box.clientWidth)); if (!force && Math.abs(w - last) < 4) return; last = w; box.innerHTML = ""; render(w, w < 560); }; new ResizeObserver(() => go()).observe(box); go(); redraws.push(() => go(true)); }
+const isDark = () => { const r = document.documentElement; return r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const small = () => innerWidth < 900;
+
+/* ---------- settings and colours ---------- */
+const CLS = SITE.cls;   // mainland, small, island, lake, offshore
+const CL = { mainland: { l: "Mainland", c: "#9C9485", cd: "#6E6A62" }, small: { l: "Small sea island (under 25 km²)", c: "#B8462E", cd: "#E07A5F" },
+  island: { l: "Sea island (25 to 1,000 km²)", c: "#1F5E7A", cd: "#6FB1D0" }, lake: { l: "Island in a lake or river", c: "#4F8A3C", cd: "#8BC57A" }, offshore: { l: "At sea, not placed", c: "#9C9485", cd: "#6E6A62" } };
+const ccol = k => isDark() ? CL[k].cd : CL[k].c;
+const ISL = new Set([1, 2, 3]);
+const CNAME = {}; SITE.countries.forEach(([c, n]) => CNAME[c] = n);
+const RNAME = {}; SITE.regions.forEach(([k, n]) => RNAME[k] = n);
+const KNAME = {}; SITE.kinds.forEach(([k, n]) => KNAME[k] = n);
+const CENTS = []; for (let c = 300; c <= 1900; c += 100) CENTS.push(c);
+const centLab = c => c <= 300 ? "Before 400" : `${c}s`;
+const centSub = c => c <= 300 ? "founded before 400" : `${c} to ${c + 99}`;
+const ATL = new Set(["ireland", "scotland", "wales", "brittany", "galicia"]);
+
+/* hero mark: an island with a beehive cell and a cross */
+(function () {
+  const g = document.getElementById("heroMark");
+  el("path", { d: "M2 96 Q20 90 34 92 Q50 70 66 74 Q80 78 98 96 Z", fill: "#B8462E" }, g);
+  el("path", { d: "M2 100 Q14 96 26 100 T50 100 T74 100 T98 100", fill: "none", stroke: "#1F5E7A", "stroke-width": 3 }, g);
+  el("path", { d: "M2 110 Q14 106 26 110 T50 110 T74 110 T98 110", fill: "none", stroke: "#1F5E7A", "stroke-width": 3, opacity: .55 }, g);
+  el("path", { d: "M40 78 Q40 58 50 56 Q60 58 60 78 Z", fill: "currentColor" }, g);
+  el("path", { d: "M50 18 V50 M41 28 H59", stroke: "currentColor", "stroke-width": 4, "stroke-linecap": "round" }, g);
+})();
+
+/* ---------- base map and layers ---------- */
+const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/";
+const ESRI_ATT = 'Tiles &copy; Esri, HERE, Garmin, USGS, NGA, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, and the GIS user community';
+const LYDEF = { base: "plain", hills: true, hillK: 45, labels: false, labelK: 80, names: true, nameLvl: 1, cnames: true, borders: true, pts: true, outl: true, undated: true, dot: 1, alpha: 85 };
+const LY = { ...LYDEF };
+try { Object.assign(LY, JSON.parse(localStorage.getItem("holy_layers") || "{}")); } catch (e) {}
+const saveLY = () => { try { localStorage.setItem("holy_layers", JSON.stringify(LY)); } catch (e) {} };
+const map = L.map("map", { minZoom: 2, maxZoom: 17, maxBounds: [[15, -60], [85, 90]], zoomSnap: .5, preferCanvas: true }).setView([51, 8], small() ? 3 : 4);
+["hills:250", "outl:380", "borders:390", "labels:450", "pts:500", "names:620"].forEach(s => { const [n, z] = s.split(":"); map.createPane(n); map.getPane(n).style.zIndex = z; });
+["hills", "labels", "names", "borders", "outl"].forEach(n => map.getPane(n).style.pointerEvents = "none");
+let base = null, hills = null, labels = null, outl = null; const names = L.layerGroup(), cnames = L.layerGroup();
+const borderLayer = L.geoJSON(WORLD, { pane: "borders", interactive: false, style: () => ({ color: isDark() ? "#5b6170" : "#a89f8e", weight: .7, fill: false, opacity: .9 }) });
+fetch("data/islands.geojson").then(r => r.json()).then(j => { outl = L.geoJSON(j, { pane: "outl", interactive: false, style: f => ({ color: f.properties.lake ? ccol("lake") : ccol("island"), weight: 1.4, fillOpacity: .12, opacity: .8 }) }); applyLayers(); });
+function setTiles() {
+  [base, labels, hills].forEach(l => { if (l) map.removeLayer(l); });
+  const t = isDark() ? "Dark" : "Light";
+  const url = LY.base === "relief" ? ESRI + "World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}" : LY.base === "satellite" ? ESRI + "World_Imagery/MapServer/tile/{z}/{y}/{x}" : LY.base === "streets" ? ESRI + "World_Street_Map/MapServer/tile/{z}/{y}/{x}" : `${ESRI}Canvas/World_${t}_Gray_Base/MapServer/tile/{z}/{y}/{x}`;
+  base = L.tileLayer(url, { maxZoom: 19, maxNativeZoom: LY.base === "relief" ? 13 : 16, attribution: ESRI_ATT }).addTo(map);
+  hills = L.tileLayer(ESRI + "Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19, maxNativeZoom: 16, pane: "hills" });
+  labels = L.tileLayer(`${ESRI}Canvas/World_${t}_Gray_Reference/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 19, maxNativeZoom: 16, pane: "labels" });
+  borderLayer.setStyle({ color: isDark() ? "#5b6170" : "#a89f8e" });
+  if (outl) outl.setStyle(f => ({ color: f.properties.lake ? ccol("lake") : ccol("island") }));
+  applyLayers();
+}
+function applyLayers() {
+  if (!base) return;
+  if (LY.hills) { hills.addTo(map); hills.setOpacity(Math.min(1, .12 + LY.hillK / 120)); } else map.removeLayer(hills);
+  if (LY.labels) { labels.addTo(map); labels.setOpacity(LY.labelK / 100); } else map.removeLayer(labels);
+  if (LY.borders) borderLayer.addTo(map); else map.removeLayer(borderLayer);
+  if (outl) { if (LY.outl) outl.addTo(map); else map.removeLayer(outl); }
+  if (LY.names) names.addTo(map); else map.removeLayer(names);
+  if (LY.cnames) cnames.addTo(map); else map.removeLayer(cnames);
+  placeNames(); if (ptl) ptl.redraw();
+}
+function placeNames() {
+  names.clearLayers(); cnames.clearLayers();
+  const z = map.getZoom(), bb = map.getBounds().pad(.05); const boxes = [];
+  if (LY.names) {
+    const minPop = [[4, 3e6], [5, 1e6], [6, 4e5], [7, 1.5e5], [99, 5e4]].find(([zz]) => z < zz + (LY.nameLvl === 2 ? 1.5 : LY.nameLvl === 0 ? -1 : 0))[1] * (LY.nameLvl === 0 ? 2 : 1);
+    let n = 0;
+    for (const c of CITIES) {
+      if ((c.pop < minPop && !(c.cap && z >= 5)) || !bb.contains([c.lat, c.lon])) continue;
+      const pt = map.latLngToContainerPoint([c.lat, c.lon]), big = c.pop >= 2e6 || c.cap;
+      const bx = [pt.x - 4, pt.y - 8, pt.x + 10 + c.name.length * (big ? 6.9 : 6.3), pt.y + 7];
+      if (boxes.some(o => bx[0] < o[2] && bx[2] > o[0] && bx[1] < o[3] && bx[3] > o[1])) continue;
+      boxes.push(bx); L.marker([c.lat, c.lon], { pane: "names", interactive: false, keyboard: false, icon: L.divIcon({ className: "cityL" + (big ? "" : " s"), html: `<i></i>${esc(c.name)}`, iconSize: null, iconAnchor: [3, 6] }) }).addTo(names);
+      if (++n >= 120) break;
+    }
+  }
+  if (LY.cnames && z >= 3.5 && z < 7) {
+    for (const [iso, nm, lx, ly, pop] of SITE.clab) {
+      if (!bb.contains([ly, lx])) continue; if (z < 4.5 && pop < 8e6) continue;
+      const pt = map.latLngToContainerPoint([ly, lx]), w = nm.length * 7.2;
+      const bx = [pt.x - w / 2, pt.y - 7, pt.x + w / 2, pt.y + 7]; if (boxes.some(o => bx[0] < o[2] && bx[2] > o[0] && bx[1] < o[3] && bx[3] > o[1])) continue; boxes.push(bx);
+      L.marker([ly, lx], { pane: "names", interactive: false, keyboard: false, icon: L.divIcon({ className: "cntL", html: esc(nm), iconSize: [w, 14], iconAnchor: [w / 2, 7] }) }).addTo(cnames);
+    }
+  }
+}
+(function layerControl() {
+  const Ctl = L.Control.extend({ options: { position: "topright" }, onAdd() {
+    const d = L.DomUtil.create("div"); L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+    d.innerHTML = `<button class="lyrBtn" aria-expanded="false">Map layers</button>
+<div class="lyrPanel" hidden>
+ <div class="row"><label style="font-weight:600">Base map</label><div class="sub"><select data-k="base" aria-label="Base map"><option value="plain">Plain grey</option><option value="streets">Streets</option><option value="relief">Shaded relief</option><option value="satellite">Satellite</option></select></div></div>
+ <div class="row"><label><input type="checkbox" data-k="hills"> Hills and mountains</label><div class="sub"><span>strength</span><input type="range" data-k="hillK" min="10" max="100" step="5" aria-label="Hill shading strength"></div></div>
+ <div class="row"><label><input type="checkbox" data-k="labels"> Map labels</label><div class="sub"><span>strength</span><input type="range" data-k="labelK" min="20" max="100" step="5" aria-label="Map label strength"></div></div>
+ <div class="row"><label><input type="checkbox" data-k="names"> Bold place names</label><div class="sub"><span>how many</span><select data-k="nameLvl" aria-label="How many place names"><option value="0">Biggest only</option><option value="1">Some</option><option value="2">Lots</option></select></div></div>
+ <div class="row"><label><input type="checkbox" data-k="cnames"> Country names</label></div>
+ <div class="row"><label><input type="checkbox" data-k="borders"> Borders</label></div>
+ <div class="hd">Monasteries</div>
+ <div class="row"><label><input type="checkbox" data-k="pts"> Monastic houses</label></div>
+ <div class="row"><label><input type="checkbox" data-k="outl"> Outlines of islands with a house</label></div>
+ <div class="row"><label><input type="checkbox" data-k="undated"> Include undated houses</label><div class="sub">in 'All dates' only</div></div>
+ <div class="row"><label style="font-weight:600">Dot size</label><div class="sub"><span>size</span><input type="range" data-k="dot" min="0.6" max="2.2" step="0.1" aria-label="Dot size"></div></div>
+ <div class="row"><label style="font-weight:600">Colour</label><div class="sub"><span>strength</span><input type="range" data-k="alpha" min="25" max="100" step="5" aria-label="Colour strength"></div></div>
+ <button class="reset">Reset layers</button>
+</div>`;
+    return d; } });
+  map.addControl(new Ctl());
+  const box = map.getContainer(), btn = box.querySelector(".lyrBtn"), pan = box.querySelector(".lyrPanel");
+  btn.onclick = () => { const o = pan.hidden; pan.hidden = !o; btn.setAttribute("aria-expanded", o); };
+  const sync = () => pan.querySelectorAll("[data-k]").forEach(i => { const k = i.dataset.k; if (i.type === "checkbox") i.checked = LY[k]; else i.value = LY[k]; });
+  pan.querySelectorAll("[data-k]").forEach(i => i.addEventListener(i.type === "range" ? "input" : "change", () => {
+    const k = i.dataset.k; LY[k] = i.type === "checkbox" ? i.checked : (k === "base" ? i.value : +i.value);
+    if (k === "hillK") LY.hills = true; if (k === "labelK") LY.labels = true; if (k === "nameLvl") LY.names = true;
+    sync(); saveLY(); if (k === "base") setTiles(); else applyLayers();
+  }));
+  pan.querySelector(".reset").onclick = () => { Object.assign(LY, LYDEF); saveLY(); sync(); setTiles(); };
+  sync();
+})();
+L.control.scale({ imperial: false, position: "bottomright" }).addTo(map);
+
+/* ---------- state ---------- */
+const S = { time: "all", ci: CENTS.indexOf(600), isl: false, off: new Set(["offshore"]), sel: -1 };
+
+/* ---------- points (loaded after the page) ---------- */
+let P = null, n = 0, MX, MY, CI;
+fetch("data/points.json").then(r => r.json()).then(j => {
+  P = j; n = P.x.length; MX = new Float64Array(n); MY = new Float64Array(n); CI = new Int8Array(n);
+  for (let i = 0; i < n; i++) {
+    const lon = P.x[i] / 1e4, lat = P.y[i] / 1e4, s = Math.sin(lat * Math.PI / 180);
+    MX[i] = (lon + 180) / 360; MY[i] = .5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI);
+    const y = P.yr[i]; CI[i] = y == null ? -1 : Math.max(0, Math.min(CENTS.length - 1, (Math.floor(y / 100) * 100 - 300) / 100));
+  }
+  ptl.redraw(); side(); legend();
+});
+function pass(i) {
+  const k = CLS[P.cl[i]]; if (S.off.has(k)) return false;
+  if (S.isl && !ISL.has(P.cl[i])) return false;
+  if (S.time === "all") return LY.undated || CI[i] !== -1;
+  if (S.time === "century") return CI[i] === S.ci;
+  return CI[i] >= 0 && CI[i] <= S.ci;
+}
+const PtLayer = L.Layer.extend({
+  onAdd(m) { this._m = m; this._c = L.DomUtil.create("canvas", "ptsc"); this._c.style.position = "absolute"; this._c.style.pointerEvents = "none"; m.getPane("pts").appendChild(this._c);
+    m.on("moveend zoomend resize viewreset", this.redraw, this); m.on("zoomstart", () => { this._c.style.opacity = 0; }); this.redraw(); },
+  onRemove(m) { L.DomUtil.remove(this._c); m.off("moveend zoomend resize viewreset", this.redraw, this); },
+  redraw() {
+    const m = this._m, c = this._c; if (!m) return; const sz = m.getSize(), dpr = window.devicePixelRatio || 1;
+    L.DomUtil.setPosition(c, m.containerPointToLayerPoint([0, 0]));
+    c.width = sz.x * dpr; c.height = sz.y * dpr; c.style.width = sz.x + "px"; c.style.height = sz.y + "px";
+    const ctx = c.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, sz.x, sz.y); c.style.opacity = 1;
+    VIEW.counts = new Array(CLS.length).fill(0); VIEW.total = 0;
+    if (!P || !LY.pts) { side(); return; }
+    const z = m.getZoom(), scl = 256 * Math.pow(2, z), o = m.getPixelBounds().min, W = sz.x, H = sz.y;
+    VIEW.scl = scl; VIEW.o = o;
+    const r0 = (z < 4 ? 1.2 : z < 5 ? 1.6 : z < 7 ? 2.2 : z < 9 ? 3 : z < 12 ? 4 : 5) * LY.dot;
+    ctx.globalAlpha = LY.alpha / 100;
+    for (const f of [0, 4, 2, 3, 1]) {
+      const r = f === 0 || f === 4 ? r0 * .8 : r0 * 1.9 + 1.2; ctx.fillStyle = ccol(CLS[f]); ctx.beginPath(); let k = 0;
+      for (let i = 0; i < n; i++) {
+        if (P.cl[i] !== f || !pass(i)) continue; const x = MX[i] * scl - o.x, y = MY[i] * scl - o.y;
+        if (x < -8 || y < -8 || x > W + 8 || y > H + 8) continue;
+        VIEW.counts[f]++; VIEW.total++;
+        if (r < 2.2) ctx.rect(x - r, y - r, 2 * r, 2 * r); else { ctx.moveTo(x + r, y); ctx.arc(x, y, r, 0, 6.2832); }
+        if (++k % 4000 === 0) { ctx.fill(); ctx.beginPath(); }
+      }
+      ctx.fill();
+      if (f !== 0 && f !== 4) { ctx.globalAlpha = 1; ctx.strokeStyle = isDark() ? "#15171B" : "#FFFFFF"; ctx.lineWidth = .8; ctx.stroke(); ctx.globalAlpha = LY.alpha / 100; }
+    }
+    ctx.globalAlpha = 1;
+    if (S.sel >= 0) { const i = S.sel, x = MX[i] * scl - o.x, y = MY[i] * scl - o.y; ctx.lineWidth = 2.5; ctx.strokeStyle = css("--fg"); ctx.beginPath(); ctx.arc(x, y, r0 * 2 + 6, 0, 6.2832); ctx.stroke(); }
+    side();
+  }
+});
+const VIEW = { counts: [], total: 0 };
+const ptl = new PtLayer().addTo(map);
+
+/* ---------- picking and popups ---------- */
+function nearest(cp, rad) {
+  if (!P) return -1; const { scl, o } = VIEW; let best = -1, bs = 1e9;
+  for (let i = 0; i < n; i++) {
+    const x = MX[i] * scl - o.x - cp.x; if (x > rad || x < -rad) continue; const y = MY[i] * scl - o.y - cp.y; if (y > rad || y < -rad) continue;
+    if (!pass(i)) continue; const d = Math.hypot(x, y) - (ISL.has(P.cl[i]) ? 3 : 0); if (d < bs) { bs = d; best = i; }
+  }
+  return best;
+}
+const nm = i => P.n[i] ? P.n[i].charAt(0).toUpperCase() + P.n[i].slice(1) : "(no English name)";
+function ordinal(c) { const s = c % 100 >= 11 && c % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][c % 10] || "th"; return c + s; }
+const yearText = i => { const y = P.yr[i]; if (y == null) return "no date in Wikidata"; if (P.rc[i]) return `the ${ordinal(Math.floor(y / 100) + 1)} century (read as ${y})`; return String(y); };
+function hInfo(i) {
+  const k = CLS[P.cl[i]], q = "Q" + P.q[i], isl = ISL.has(P.cl[i]);
+  let where = k === "mainland" ? (P.big[i] ? "On a large island (over 1,000 km²), counted as mainland" : "Mainland") : CL[k].l;
+  return `<b class="nm">${esc(nm(i))}</b><span class="chip" style="background:${ccol(k)}">${esc(isl ? CL[k].l.replace(/ \(.*\)/, "") : "Mainland")}</span><table>
+<tr><td>Setting</td><td>${esc(where)}${P.a[i] != null ? `<br><small>island of ${P.a[i] < 1 ? P.a[i].toFixed(2) : P.a[i] < 10 ? P.a[i].toFixed(1) : fmt(P.a[i])} km²</small>` : ""}</td></tr>
+${P.dm[i] ? `<tr><td>${k === "lake" ? "To lake shore" : "To mainland"}</td><td>${P.dm[i] < 10 ? P.dm[i].toFixed(1) : fmt(P.dm[i])} km${k === "lake" ? "" : "<br><small>to continental Europe, Africa, Great Britain or Ireland</small>"}</td></tr>` : ""}
+<tr><td>Founded</td><td>${esc(yearText(i))}</td></tr>
+<tr><td>Dissolved</td><td>${P.d[i] == null ? (P.ru[i] ? "a ruin or former house; no date" : "no date in Wikidata") : P.d[i]}</td></tr>
+<tr><td>Kind</td><td>${esc(KNAME[SITE.kinds[P.k[i]][0]])}</td></tr>
+<tr><td>Where</td><td>${esc(CNAME[SITE.countries[P.c[i]][0]] || "")}<br><small>${esc(RNAME[SITE.regions[P.r[i]][0]])}</small></td></tr></table>
+<p style="margin:6px 0 0"><a href="https://www.wikidata.org/wiki/${q}" target="_blank" rel="noopener">Wikidata ${q}</a>${P.sl[i] ? ` · <a href="https://www.wikidata.org/wiki/Special:GoToLinkedPage/enwiki/${q}" target="_blank" rel="noopener">Wikipedia</a>` : ""}</p>`;
+}
+function pickPoint(i, move) {
+  S.sel = i; const ll = [P.y[i] / 1e4, P.x[i] / 1e4];
+  if (move) map.setView(ll, Math.max(map.getZoom(), 11)); else ptl.redraw();
+  L.popup({ maxWidth: 300, autoPanPadding: [30, 30] }).setLatLng(ll).setContent(hInfo(i)).openOn(map);
+  side(); if (move) toMap();
+}
+map.on("click", e => { if (!P) return; const i = nearest(e.containerPoint, 10); if (i >= 0) pickPoint(i, false); else { S.sel = -1; map.closePopup(); ptl.redraw(); } });
+map.on("popupclose", () => { if (S.sel >= 0) { S.sel = -1; ptl.redraw(); } });
+let hovT = 0;
+map.on("mousemove", e => {
+  if (!P || small()) return; const now = performance.now(); if (now - hovT < 40) return; hovT = now;
+  const r = map.getContainer().getBoundingClientRect(); const i = nearest(e.containerPoint, 7);
+  if (i >= 0) { showTip(`<b>${esc(nm(i))}</b><br>${esc(CL[CLS[P.cl[i]]].l)}${P.yr[i] != null ? " · " + P.yr[i] : ""}`, r.left + e.containerPoint.x, r.top + e.containerPoint.y); map.getContainer().style.cursor = "pointer"; }
+  else { hideTip(); map.getContainer().style.cursor = ""; }
+});
+map.on("mouseout", hideTip);
+
+/* ---------- legend and side panel ---------- */
+function legend() {
+  const e = document.getElementById("legend");
+  e.innerHTML = ["small", "island", "lake", "mainland"].map(k => `<button data-f="${k}" aria-pressed="${!S.off.has(k)}"><i style="background:${ccol(k)}"></i>${esc(CL[k].l)}</button>`).join("");
+  e.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { const k = b.dataset.f; if (S.off.has(k)) S.off.delete(k); else S.off.add(k); legend(); ptl.redraw(); });
+}
+function timeTitle() { return S.time === "all" ? "All dates" : S.time === "century" ? `Founded ${centSub(CENTS[S.ci])}` : `Founded by ${CENTS[S.ci] + 99}`; }
+function side() {
+  const box = document.getElementById("side");
+  if (S.sel >= 0 && P) { box.innerHTML = `<button class="back">Back to the view</button><h4>Monastic house</h4>` + hInfo(S.sel).replace('class="nm"', 'class="big" style="display:block"'); box.querySelector(".back").onclick = () => { S.sel = -1; map.closePopup(); ptl.redraw(); }; return; }
+  if (!P) { box.innerHTML = `<h4>Loading</h4><div class="big">Loading ${fmt(R.coverage.n)} houses</div>`; return; }
+  const tot = VIEW.total, c = VIEW.counts, isl = c[1] + c[2] + c[3];
+  let h = `<h4>${esc(timeTitle())}</h4><div class="big">${fmt(tot)} house${tot === 1 ? "" : "s"} in view</div><p class="sub">${S.isl ? "Islands only. " : ""}${tot && !S.isl ? `${fmt(isl)} on islands (${(100 * isl / tot).toFixed(1)}%). ` : ""}Click a setting to show only it; click a dot for details.</p>`;
+  const mx = Math.max(1, ...c);
+  h += ["small", "island", "lake", "mainland"].map(k => { const v = c[CLS.indexOf(k)]; return `<div class="fbar" data-solo="${k}"><span class="l"><span class="sw" style="background:${ccol(k)}"></span>${esc(CL[k].l)}</span><span class="v">${fmt(v)}</span><span class="t"><i style="width:${(100 * v / mx).toFixed(1)}%;background:${ccol(k)}"></i></span></div>`; }).join("");
+  if (S.time === "century") { const t = R.century.find(x => x.c === CENTS[S.ci]); if (t) h += `<h4>All Europe, this century</h4><p class="sub" style="margin:0">${fmt(t.n)} dated houses, ${fmt(t.isl)} on islands (${t.n ? t.pct.toFixed(1) : 0}%).</p>`; }
+  if (S.time !== "all") h += `<p class="sub" style="margin-top:8px">${fmt(R.coverage.dated_n)} of ${fmt(R.coverage.n)} houses have a foundation date.</p>`;
+  box.innerHTML = h; box.querySelectorAll("[data-solo]").forEach(e => e.onclick = () => { S.off = new Set(CLS.filter(x => x !== e.dataset.solo)); legend(); ptl.redraw(); });
+}
+function toMap() { if (small()) document.getElementById("map").scrollIntoView({ behavior: "smooth", block: "start" }); }
+
+/* ---------- time ---------- */
+const slider = document.getElementById("slider"); slider.max = CENTS.length - 1;
+function setTime(t) {
+  S.time = t; document.querySelectorAll("#timeRow .btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.t === t));
+  slider.value = t === "all" ? CENTS.length - 1 : S.ci; timeLabel(); ptl.redraw();
+}
+function timeLabel() {
+  const L1 = document.getElementById("yrLab");
+  if (S.time === "all") L1.innerHTML = `All dates<small>every house, dated or not</small>`;
+  else if (S.time === "century") L1.innerHTML = `${esc(centLab(CENTS[S.ci]))}<small>founded ${esc(centSub(CENTS[S.ci]).replace("founded ", ""))}</small>`;
+  else L1.innerHTML = `By ${CENTS[S.ci] + 99}<small>dated houses founded by then</small>`;
+}
+slider.addEventListener("input", () => { S.ci = +slider.value; if (S.time === "all") { S.time = "century"; document.querySelectorAll("#timeRow .btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.t === "century")); } timeLabel(); ptl.redraw(); });
+document.querySelectorAll("#timeRow .btn").forEach(b => b.onclick = () => { stopPlay(); setTime(b.dataset.t); });
+let playT = null; const playBtn = document.getElementById("play");
+function stopPlay() { if (playT) { clearInterval(playT); playT = null; playBtn.textContent = "▶"; playBtn.setAttribute("aria-label", "Play through the centuries"); } }
+playBtn.onclick = () => {
+  if (playT) { stopPlay(); return; }
+  if (S.time === "all") S.time = "century";
+  if (S.ci >= CENTS.length - 1) S.ci = 0;
+  setTime(S.time); playBtn.textContent = "❚❚"; playBtn.setAttribute("aria-label", "Pause");
+  playT = setInterval(() => { if (S.ci >= CENTS.length - 1) { stopPlay(); return; } S.ci++; slider.value = S.ci; timeLabel(); ptl.redraw(); }, 1300);
+};
+function setIsl(v) { S.isl = v; document.querySelectorAll("#islRow .btn").forEach(x => x.setAttribute("aria-pressed", (x.dataset.i === "isl") === v)); ptl.redraw(); }
+document.querySelectorAll("#islRow .btn").forEach(b => b.onclick = () => setIsl(b.dataset.i === "isl"));
+
+/* ---------- zoom-to and links from the text ---------- */
+const FOC = [["Europe", [[34, -12], [66, 35]]], ["Atlantic edge", [[42, -11.5], [59.5, 2.5]]], ["Ireland", [[51.3, -10.8], [55.5, -5.4]]], ["Hebrides", [[55.5, -8], [58.6, -4.5]]],
+  ["Wales", [[51.3, -5.6], [53.5, -2.6]]], ["Brittany", [[46.9, -5.3], [49, -1]]], ["Lérins", [[43.4, 6.8], [43.65, 7.25]]], ["Venice lagoon", [[45.3, 12.15], [45.6, 12.6]]],
+  ["Aegean", [[35, 22.5], [41, 28.5]]], ["Lake Constance", [[47.45, 8.8], [47.9, 9.8]]], ["Lake Ladoga", [[59.8, 29.5], [61.8, 33]]], ["White Sea", [[64, 34], [66.5, 37.5]]], ["Azores", [[36.8, -31.5], [39.9, -24.8]]]];
+(function () {
+  const row = document.getElementById("focusRow");
+  FOC.forEach(([nm, b]) => { const e = document.createElement("button"); e.className = "btn"; e.textContent = nm; e.onclick = () => { map.fitBounds(b); toMap(); }; row.appendChild(e); });
+})();
+const GO = { atl: [[42, -11.5], [59.5, 2.5]], aeg: [[35, 22.5], [41, 28.5]], lad: [[59.8, 29.5], [61.8, 33]] };
+document.querySelectorAll("[data-go]").forEach(a => a.onclick = e => {
+  e.preventDefault(); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" });
+  setIsl(true); setTimeout(() => map.fitBounds(GO[a.dataset.go]), 300);
+});
+
+/* ---------- search: places, countries and houses ---------- */
+(function search() {
+  const inp = document.getElementById("q"), sug = document.getElementById("sug"); let opts = [], k = -1;
+  const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  const NC = CITIES.map(c => norm(c.name)), NCT = SITE.clab.map(c => norm(c[1])); let NB = null;
+  function build(q) {
+    const nq = norm(q.trim()); if (nq.length < 2) return [];
+    const out = [];
+    SITE.clab.forEach((c, i) => { if (NCT[i].includes(nq)) out.push({ t: "c", n: c[1], c, s: NCT[i].startsWith(nq) ? 5 : 1.5 }); });
+    CITIES.forEach((c, i) => { if (NC[i].includes(nq)) out.push({ t: "p", n: c.name, c, s: (NC[i].startsWith(nq) ? 3 : 1) + Math.log10(c.pop + 10) / 10 }); });
+    if (P) {
+      if (!NB) NB = P.n.map(x => norm(x || ""));
+      let m = 0; for (let i = n - 1; i >= 0 && m < 400; i--) { const nb = NB[i]; if (nb && nb.includes(nq)) { out.push({ t: "b", n: nm(i), i, s: (nb.startsWith(nq) ? 2.2 : 1) + Math.min(P.sl[i], 60) / 30 + (ISL.has(P.cl[i]) ? .5 : 0) }); m++; } }
+    }
+    const seen = new Set(); return out.sort((a, b) => b.s - a.s).filter(o => { const key = o.t + o.n + (o.i ?? ""); if (seen.has(key)) return false; seen.add(key); return true; }).slice(0, 12);
+  }
+  const lab = o => o.t === "c" ? `${esc(o.n)} <span>country</span>` : o.t === "p" ? `${esc(o.n)} <span>place, ${esc(CNAME[o.c.iso] || o.c.iso)}</span>` : `${esc(o.n)} <span>${esc(CL[CLS[P.cl[o.i]]].l.replace(/ \(.*\)/, ""))}, ${esc(CNAME[SITE.countries[P.c[o.i]][0]] || "")}</span>`;
+  const show = () => { sug.innerHTML = opts.map((o, i) => `<li role="option" aria-selected="${i === k}" data-i="${i}">${lab(o)}</li>`).join(""); sug.style.display = sug.innerHTML ? "block" : "none"; };
+  const choose = o => { sug.style.display = "none"; inp.value = o.n; inp.blur();
+    if (o.t === "c") { const f = WORLD.features.find(x => x.properties.iso === o.c[0]); if (f) map.fitBounds(L.geoJSON(f).getBounds(), { maxZoom: 7 }); toMap(); }
+    else if (o.t === "p") { map.setView([o.c.lat, o.c.lon], 11); toMap(); }
+    else { const kk = CLS[P.cl[o.i]]; if (S.off.has(kk)) { S.off.delete(kk); legend(); } if (!pass(o.i)) { setIsl(false); setTime("all"); } pickPoint(o.i, true); } };
+  inp.addEventListener("input", () => { opts = build(inp.value); k = -1; show(); });
+  inp.addEventListener("keydown", e => { if (e.key === "ArrowDown") { k = Math.min(opts.length - 1, k + 1); show(); e.preventDefault(); } else if (e.key === "ArrowUp") { k = Math.max(0, k - 1); show(); e.preventDefault(); } else if (e.key === "Enter" && opts.length) { choose(opts[Math.max(0, k)]); } else if (e.key === "Escape") { sug.style.display = "none"; } });
+  sug.addEventListener("click", e => { const li = e.target.closest("li[data-i]"); if (li) choose(opts[+li.dataset.i]); });
+  document.addEventListener("click", e => { if (!e.target.closest(".searchbox")) sug.style.display = "none"; });
+})();
+map.on("zoomend moveend", placeNames);
+function findQ(q) { if (!P) return -1; return P.q.indexOf(+String(q).slice(1)); }
+function goHouse(q) { const i = findQ(q); if (i < 0) return; S.off = new Set(["offshore"]); legend(); setIsl(false); setTime("all"); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); setTimeout(() => pickPoint(i, true), 350); }
+
+/* ---------- charts ---------- */
+function hbars(box, rows, opts) {
+  resp(box, (w, sm) => {
+    const maxLab = Math.max(...rows.map(r => String(r.lab ?? r.v).length)), lw = sm ? Math.min(150, w * .42) : Math.min(260, w * .4), rh = 26, h = rows.length * rh + 10, x0 = lw, x1 = w - 10 - maxLab * 7.4, max = opts.max || Math.max(...rows.map(r => r.v)) || 1;
+    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": opts.aria }, box);
+    rows.forEach((r, i) => {
+      const y = 4 + i * rh, bw = Math.max(r.v > 0 ? 2 : 0, (x1 - x0) * r.v / max), cut = sm ? 19 : 34;
+      const t = lbl(svg, x0 - 8, y + 16, r.n.length > cut ? r.n.slice(0, cut - 1) + "." : r.n, "lab", "end");
+      let xx = x0; const segs = r.segs || [[r.v, r.c]]; const bars = [];
+      segs.forEach(([v, c]) => { const ww = (x1 - x0) * v / max; bars.push(el("rect", { x: xx, y: y + 3, width: Math.max(0, ww), height: rh - 9, fill: c, rx: 1 }, svg)); xx += ww; });
+      lbl(svg, x0 + bw + 6, y + 16, r.lab ?? fmt(r.v), "lab b");
+      const hit = [t, ...bars];
+      if (r.tip) hit.forEach(e => { e.addEventListener("mousemove", ev => showTip(r.tip, ev.clientX, ev.clientY)); e.addEventListener("mouseleave", hideTip); });
+      if (r.go) hit.forEach(e => { e.style.cursor = "pointer"; e.addEventListener("click", ev => { ev.stopPropagation(); r.go(); }); });
+    });
+  });
+}
+const GRP = [["all", "All Europe", "--fg"], ["atl", "Atlantic Celtic edge", "--hot"], ["cont", "France and Central Europe", "--muted"], ["med", "Mediterranean", "--cool"]];
+function perChart() {
+  const box = document.getElementById("perChart"), G = R.periods.groups, LBL = R.periods.labels;
+  resp(box, (w, sm) => {
+    const h = sm ? 300 : 340, x0 = 40, x1 = w - 8, y0 = 30, y1 = h - 34, ymax = 40, cw = (x1 - x0) / LBL.length, Y = v => y1 - (y1 - y0) * Math.min(v, ymax) / ymax;
+    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Share of dated houses on islands by period and region group" }, box);
+    [0, 10, 20, 30, 40].forEach(p => { el("line", { x1: x0, x2: x1, y1: Y(p), y2: Y(p), stroke: css("--rule") }, svg); lbl(svg, x0 - 5, Y(p) + 4, p + "%", "lab s m", "end"); });
+    LBL.forEach(([k, l], j) => {
+      lbl(svg, x0 + cw * (j + .5), y1 + 18, sm ? l.replace(" and later", "+").replace("Before ", "<") : l, "lab s", "middle");
+      GRP.forEach(([g, gl, cv], gi) => {
+        const s = G[g][k]; if (!s.n) return; const x = x0 + cw * j + cw * (.2 + .2 * gi), col = css(cv);
+        el("line", { x1: x, x2: x, y1: Y(s.lo), y2: Y(s.hi), stroke: col, "stroke-width": 2, opacity: .45 }, svg);
+        const c = el("circle", { cx: x, cy: Y(s.pct), r: 3 + Math.min(6, Math.sqrt(s.n) / 6), fill: col, stroke: css("--card"), "stroke-width": 1 }, svg);
+        c.addEventListener("mousemove", ev => showTip(`<b>${esc(gl)}</b>, ${esc(l.toLowerCase())}<br>${fmt(s.isl)} of ${fmt(s.n)} dated houses on islands (${s.pct.toFixed(1)}%)<br>95% interval ${s.lo} to ${s.hi}%`, ev.clientX, ev.clientY));
+        c.addEventListener("mouseleave", hideTip);
+      });
+    });
+    let lx = x0; GRP.forEach(([g, gl, cv]) => { el("circle", { cx: lx + 5, cy: 12, r: 5, fill: css(cv) }, svg); const t = lbl(svg, lx + 14, 16, sm ? gl.replace("France and Central Europe", "France, Central").replace("Atlantic Celtic edge", "Atlantic edge") : gl, "lab s"); lx += 22 + (sm ? 7 : 7.6) * t.textContent.length; });
+  });
+}
+function centChart() {
+  const box = document.getElementById("centChart"), C = R.century.filter(c => c.c >= 400);
+  resp(box, (w, sm) => {
+    const h = sm ? 280 : 320, x0 = 40, x1 = w - 46, y0 = 12, y1 = h - 30, cw = (x1 - x0) / C.length, ym = 10, nmax = Math.ceil(Math.max(...C.map(c => c.n)) / 250) * 250;
+    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Island share by century of foundation" }, box);
+    [0, 2, 4, 6, 8, 10].forEach(p => { const y = y1 - (y1 - y0) * p / ym; el("line", { x1: x0, x2: x1, y1: y, y2: y, stroke: css("--rule") }, svg); lbl(svg, x0 - 5, y + 4, p + "%", "lab s m", "end"); lbl(svg, x1 + 5, y + 4, fmt(nmax * p / ym), "lab s m"); });
+    let d = "";
+    C.forEach((c, j) => {
+      const x = x0 + cw * (j + .5), bh = (y1 - y0) * c.n / nmax; const g = el("g", { style: "cursor:pointer" }, svg);
+      el("rect", { x: x - cw * .35, y: y1 - bh, width: cw * .7, height: bh, fill: css("--rule") }, g);
+      el("rect", { x: x - cw / 2, y: y0, width: cw, height: y1 - y0, fill: "transparent" }, g);
+      const yy = y1 - (y1 - y0) * Math.min(c.pct, ym) / ym; d += (j ? "L" : "M") + x + " " + yy;
+      if (!sm || j % 2 === 0) lbl(svg, x, y1 + 16, c.c + "s", "lab s", "middle");
+      g.addEventListener("mousemove", ev => showTip(`<b>${c.c}s</b>: ${fmt(c.n)} dated houses<br>${fmt(c.isl)} on islands (${c.pct.toFixed(1)}%)`, ev.clientX, ev.clientY));
+      g.addEventListener("mouseleave", hideTip);
+      g.addEventListener("click", ev => { ev.stopPropagation(); S.ci = CENTS.indexOf(c.c); setTime("century"); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); });
+    });
+    el("path", { d, fill: "none", stroke: css("--cool"), "stroke-width": 2.4, "pointer-events": "none" }, svg);
+    C.forEach((c, j) => { const yy = y1 - (y1 - y0) * Math.min(c.pct, ym) / ym; el("circle", { cx: x0 + cw * (j + .5), cy: yy, r: 3.5, fill: css("--cool"), "pointer-events": "none" }, svg); if (c.pct > ym) lbl(svg, x0 + cw * (j + .5) + 6, yy + 4, `${c.pct.toFixed(0)}% (${c.isl} of ${c.n})`, "lab s"); });
+  });
+}
+function disChart() {
+  const box = document.getElementById("disChart"), D = R.dissolution.by_decade.filter(([d]) => d >= 700);
+  resp(box, (w, sm) => {
+    const h = sm ? 230 : 270, x0 = 40, x1 = w - 8, y0 = 10, y1 = h - 26, X = d => x0 + (x1 - x0) * (d - 700) / 1300, mx = Math.max(...D.map(d => d[1]));
+    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Dissolutions by decade" }, box);
+    [0, 200, 400, 600].forEach(p => { const y = y1 - (y1 - y0) * p / mx; el("line", { x1: x0, x2: x1, y1: y, y2: y, stroke: css("--rule") }, svg); lbl(svg, x0 - 5, y + 4, fmt(p), "lab s m", "end"); });
+    for (let t = 800; t <= 2000; t += 200) lbl(svg, X(t), y1 + 16, String(t), "lab s m", "middle");
+    D.forEach(([d, n]) => { const b = el("rect", { x: X(d), y: y1 - (y1 - y0) * n / mx, width: Math.max(1.5, X(d + 10) - X(d) - .5), height: (y1 - y0) * n / mx + .5, fill: css("--cool") }, svg);
+      b.addEventListener("mousemove", ev => showTip(`<b>${d}s</b>: ${fmt(n)} houses dissolved or abandoned`, ev.clientX, ev.clientY)); b.addEventListener("mouseleave", hideTip); });
+    const W_ = R.dissolution.waves;
+    [[1535, `${fmt(W_.dissolution_ew)} in England and Wales, 1536 to 1541`, 1480], [1800, `${fmt(W_.german_1802_1811)} German, ${fmt(W_.france_rev)} French`, 1795]].forEach(([d, t, ax]) => { if (!sm) lbl(svg, X(ax), y0 + (d < 1600 ? 6 : 50), t, "lab s", "end"); });
+  });
+}
+(function charts() {
+  perChart(); centChart(); disChart();
+  const regs = R.regions.filter(d => d.n >= 20).slice().sort((a, b) => b.pct - a.pct);
+  hbars(document.getElementById("regChart"), regs.map(d => ({ n: d.name.replace(" and the Low Countries", "").replace(", Man and the Channel Islands", ", Man, Channel Is."), v: d.pct, lab: `${d.pct.toFixed(1)}% (${fmt(d.isl)} of ${fmt(d.n)})`,
+    segs: [[100 * (d.isl - d.lake) / d.n, ATL.has(d.k) ? css("--hot") : css("--cool")], [100 * d.lake / d.n, ccol("lake")]],
+    tip: `<b>${esc(d.name)}</b><br>${fmt(d.isl)} of ${fmt(d.n)} houses on islands, ${fmt(d.lake)} of them in lakes or rivers<br>${fmt(d.small)} on small islands under 25 km²` })), { aria: "Island share by region" });
+  const far = R.far.top.slice(0, 10).concat([R.far.skellig, R.far.iona]);
+  hbars(document.getElementById("farChart"), far.map(f => ({ n: (t => t.length > 22 ? t.slice(0, 21) + "." : t)(f.name.split(" (")[0].replace(/^monastery of /, "")) + ", " + f.cname.replace("United Kingdom", "UK"), v: f.d, c: ATL.has(f.r) ? css("--hot") : css("--cool"), lab: fmt(f.d) + " km", go: () => goHouse(f.q),
+    tip: `<b>${esc(f.name)}</b><br>${esc(f.cname)}; island of ${f.area < 10 ? f.area.toFixed(1) : fmt(f.area)} km²${f.y ? "; founded " + f.y : ""}` })), { aria: "Island houses furthest from the mainland" });
+  hbars(document.getElementById("covChart"), R.coverage.top.slice(0, 15).map(c => ({ n: c.name, v: c.n, c: "#7B8790", lab: `${fmt(c.n)} (${c.pct.toFixed(1)}%)`, tip: `<b>${esc(c.name)}</b><br>${fmt(c.n)} houses, ${c.per_m == null ? "" : c.per_m.toFixed(0) + " per million people"}` })), { aria: "Houses by country" });
+  hbars(document.getElementById("datChart"), R.regions.slice().sort((a, b) => b.dated_pct - a.dated_pct).map(d => ({ n: d.name.replace(" and the Low Countries", "").replace(", Man and the Channel Islands", ", Man, Channel Is."), v: d.dated_pct, c: css("--gold"), lab: `${d.dated_pct.toFixed(0)}% of ${fmt(d.n)}` })), { aria: "Share of houses with a foundation date, by region", max: 100 });
+  const box = document.getElementById("cards");
+  R.best.slice(0, 9).forEach(b => {
+    const d = document.createElement("button"); d.className = "card"; d.style.setProperty("--c", CL[b.cls].c);
+    d.innerHTML = `<div class="fam">${esc(CL[b.cls].l.replace(/ \(.*\)/, ""))}</div><b>${esc(b.name)}</b><span>${esc(b.cname)}${b.y != null ? " · founded " + b.y : ""} · ${fmt(b.sl)} Wikipedias${b.d ? ` · ${b.d < 10 ? b.d.toFixed(1) : fmt(b.d)} km ${b.cls === "lake" ? "from the shore" : "from the mainland"}` : ""}</span>`;
+    d.onclick = () => goHouse(b.q); box.appendChild(d);
+  });
+  const ft = document.getElementById("regTable");
+  ft.innerHTML = `<table class="ftable"><tr><th>Region</th>${R.periods.labels.map(([k, l]) => `<th class="num">${esc(l)}</th>`).join("")}<th class="num">All</th></tr>` +
+    R.regions.map(d => `<tr><td>${esc(d.name)}</td>${R.periods.labels.map(([k]) => `<td class="num">${d[k].n ? `${d[k].isl} / ${fmt(d[k].n)}` : ""}</td>`).join("")}<td class="num">${d.isl} / ${fmt(d.n)} (${d.pct.toFixed(1)}%)</td></tr>`).join("") + `</table><p class="src">Houses on islands / houses, by date of foundation.</p>`;
+})();
+
+/* ---------- start ---------- */
+document.getElementById("theme").onclick = () => { const r = document.documentElement; r.dataset.theme = isDark() ? "light" : "dark"; setTiles(); legend(); redraws.forEach(f => f()); ptl.redraw(); };
+setTiles(); legend(); side(); timeLabel();
+</script>
+/*FULLSCREEN*/
+</body>
+</html>

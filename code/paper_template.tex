@@ -1,0 +1,157 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Pagella}
+\newfontfamily\headfont{Inter}[UprightFont=*-ExtraBold,BoldFont=*-ExtraBold,Extension=.otf,Path=/usr/share/fonts/opentype/inter/]
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{graphicx,booktabs,float,caption,array,xcolor,longtable}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage[round]{natbib}
+\usepackage{setspace}
+\setstretch{1.05}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\titleformat{\section}{\headfont\Large}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\headfont\large}{\thesubsection}{0.8em}{}
+\captionsetup{font=small,labelfont=bf}
+\urlstyle{same}
+\hypersetup{pdftitle={Holy Islands: Monks, Hermits and the Edge of the World},pdfauthor={Tristan Hotham}}
+
+\begin{document}
+\begin{center}
+{\Large\bfseries Holy Islands\par}
+\vspace{0.4em}
+{\large Monks, hermits and the edge of the world: island monasteries in Wikidata, mapped through time\par}
+\vspace{1.2em}
+{\large Tristan Hotham\par}
+\vspace{0.3em}
+{\small Independent researcher\\
+ORCID: 0000-0003-4931-9349\\
+DOI: \href{https://doi.org/{{DOI}}}{https://doi.org/{{DOI}}}\par}
+\vspace{0.8em}
+2026
+\end{center}
+
+\begin{quote}
+\small
+\begin{center}\textbf{Abstract}\end{center}
+Early medieval monks of the Atlantic edge of Europe are famous for seeking islands, from Iona and Lindisfarne to Bardsey and Skellig Michael. I test how distinctive that was using the {{coverage.n|int}} monasteries, abbeys, priories, convents, friaries and hermitages in Europe that Wikidata records with coordinates, placing each on the GSHHG full-resolution shoreline and treating land under 1,000 km$^2$ as island and Great Britain, Ireland and larger islands as mainland. {{islands.n|int}} houses ({{islands.pct|f1}}\%) stand on islands: {{islands.sea_n|int}} at sea and {{islands.lake_n|int}} in lakes and rivers. Among the {{coverage.dated_n|int}} houses with a foundation date, the island share falls from {{compare.all_pre800.pct|f1}}\% before 800 to {{compare.all_p3.pct|f1}}\% for 1100 to 1299 and {{compare.all_p4.pct|f1}}\% thereafter. On the Atlantic Celtic edge (Ireland, Scotland, Wales, Brittany, Galicia), {{compare.early_atl.isl|int}} of {{compare.early_atl.n|int}} houses dated before 1100 are on islands ({{compare.early_atl.pct|f1}}\%, 95\% interval {{compare.early_atl.lo|f1}} to {{compare.early_atl.hi|f1}}\%), against {{compare.late_cont.isl|int}} of {{compare.late_cont.n|int}} ({{compare.late_cont.pct|f1}}\%) founded in France and Central Europe from 1100. The island houses furthest from the mainland are the early modern convents of the Azores, up to {{far.top.0.d|int}} km out. Of {{dissolution.n|int}} dated closures, {{dissolution.waves.dissolution_ew|int}} fall in England and Wales in 1536 to 1541; the Viking raids leave no trace in the record. Coverage is very uneven: only {{coverage.dated_pct|pc}} of houses are dated and Germany holds {{coverage.deu_pct|pc}} of them.
+
+\textbf{Keywords:} monasticism; islands; early medieval; Insular Christianity; Dissolution of the Monasteries; Wikidata; GSHHG; historical geography
+\end{quote}
+
+\section{Introduction}
+Among the most familiar images of early medieval Christianity are its island monasteries: the beehive cells of Skellig Michael on a rock off Kerry, Columba's Iona, Aidan's Lindisfarne, the twenty thousand saints said to lie on Bardsey. Irish and British monks of the sixth to eighth centuries sought a `desert in the ocean', and some, according to Dicuil writing around 825, reached the Faroes and Iceland before the Norse \citep{dicuil}. The idea was older and wider: Honoratus founded his community on the Lérins islands off Cannes around 410, and lake islands such as Reichenau carried the same logic inland.
+
+How distinctive was this? Histories of monasticism tend to proceed by famous cases, and the famous cases are islands. This study asks a simple quantitative question of an open, Europe-wide record: what share of known monastic houses stand on islands, and does the share change by date of foundation and by region? It also asks which island houses lie furthest from the mainland, and when houses were dissolved or abandoned.
+
+The source is Wikidata \citep{wikidata}, whose monastery records come from many national heritage lists and from Wikipedia editors. It is broad but uneven, and much of this paper is about the limits that this places on the answers. An interactive map accompanies the paper (\url{{{meta.page}}}).
+
+\section{Data}
+\textbf{Monastic houses.} Every Wikidata item that is an instance of a subclass of monastery (Q44613), hermitage (Q513550), abbey (Q160742), priory (Q2750108) or clochán (Q1175763) and has coordinates, retrieved through QLever \citep{qlever} in {{meta.retrieved|raw}}: {{meta.n_rows|int}} result rows for {{meta.n_items_world|int}} items worldwide. For each item I kept its English label ({{coverage.label_pct|pc}} of houses in the study area have one), point, classes, country, number of sitelinks, and the earliest inception (P571) and dissolved or abandoned (P576) dates.
+
+\textbf{Study area.} Europe in the broad sense: Natural Earth's European countries plus Cyprus and Turkey, west of 60\textdegree{}E, including Iceland, the Faroes and Macaronesia \citep{naturalearth}. I dropped {{meta.excluded_class|int}} items whose only classes are not monastic houses (wayside shrines, lodgings such as the auberges of Valletta, town houses of abbeys, an abbot's palace) or are Buddhist monasteries, leaving {{coverage.n|int}} houses in {{coverage.n_countries|int}} countries.
+
+\textbf{Shorelines.} GSHHG, the Global Self-consistent, Hierarchical, High-resolution Geography database \citep{gshhg}, at full resolution, as packaged in the basemap-data-hires Python package. Its hierarchy separates land, lakes and islands in lakes, and it includes islets of well under one square kilometre (Skellig Michael's island is {{far.skellig.area|f1}} km$^2$ in it).
+
+{{TABLE_SOURCES}}
+
+\section{Methods}
+\subsection{Islands}
+Each point was tested against the GSHHG polygons. A point on an island in a lake (level 3) is a lake island. A point in a lake but not on a mapped lake island is moved to a lake island within {{meta.snap_km|f1}} km if there is one, otherwise left on the surrounding land. A point in the sea within {{meta.snap_km|f1}} km of land is put on that land; {{islands.offshore_n|int}} points further out could not be placed.
+
+An island is land under {{meta.island_km2|int}} km$^2$. Continental Eurasia and Africa, Great Britain, Ireland and every other island of {{meta.island_km2|int}} km$^2$ or more (Iceland, Sicily, Sardinia, Corsica, Crete, Cyprus, Zealand, Gotland, Mallorca, Lewis and Harris and others) are treated as mainland, since a house there was not choosing an island in any meaningful sense. Counting the {{islands.bigisl_n|int}} houses on those larger islands as island houses would raise the overall share from {{islands.pct|f1}}\% to {{islands.any_pct|f1}}\%. Islands under {{meta.small_km2|int}} km$^2$, the scale of Iona, Lindisfarne and Bardsey, are reported separately as small islands.
+
+The shoreline data miss many small islands in lakes and rivers. I flagged every house whose English label names an island ({{islands.kw_n|int}} houses: Island, Isle, Inis, Inish, Inch, Ynys, Eilean, Île, Insel and similar) and checked by hand those the shoreline placed on the mainland. {{islands.override_lake|int}} were moved onto lake or river islands (for example Inis Cealtra in Lough Derg, Inchmahome in the Lake of Menteith, Margaret Island in the Danube) and two onto sea islets missing from GSHHG (Church Island in Valentia Harbour; Kiy Island in the White Sea). Houses whose names contain a town name (L'Isle, L'Île-Bouchard) or that stood on islands since joined to the land (Inch Abbey, Inchaffray, St Peter's Island in Lake Biel) were left on the mainland: the classification is of present geography. Of the flagged houses, {{islands.kw_isl|int}} ({{islands.kw_isl_pct|pc}}) end up on islands; conversely only {{islands.isl_kw_pct|pc}} of island houses have an island word in their label, so names alone would find very few.
+
+Distance from the mainland is measured from each sea-island house to the nearest coast of continental Europe, Africa, Great Britain or Ireland, in the LAEA Europe projection; for lake islands, to the lake shore.
+
+\subsection{Dates, periods and regions}
+Inception is the date a house was founded, which for a refounded house is often its last refoundation. Wikidata stores dates of century precision as full dates, and the extract does not carry the precision: the excess of 1 January dates in years ending 00 and 01 shows this. I read years ending in 01 on 1 January as the middle of the century they begin (1101 as 1150) and years ending in 00 on 1 January as the middle of the century they end (1100 as 1050); {{coverage.rc_pct|pc}} of dates are of this kind. The alternative reading of 00 years is reported as a sensitivity check. {{meta.future_dates|int}} inception dates later than 2026 were treated as missing.
+
+Houses were grouped into four periods by date of foundation (before 800; 800 to 1099; 1100 to 1299; 1300 and later) and into thirteen regions from their country and the Natural Earth province: the five regions of the Atlantic Celtic edge (Ireland, north and south; Scotland; Wales; historic Brittany, the five departments; Galicia) and England with Man and the Channel Islands, the rest of France, the rest of Iberia, Iceland and the Faroes, Scandinavia and the Baltic, Central Europe and the Low Countries, the Mediterranean (Italy, Malta, Greece, Cyprus, Turkey, the Adriatic states, Provence, Corsica, Catalonia, Valencia, Murcia and the Balearics) and Eastern Europe and the Balkans. Shares carry Wilson 95\% intervals.
+
+\section{Results}
+\subsection{How many houses stand on islands}
+{{islands.n|int}} of {{coverage.n|int}} houses ({{islands.pct|f1}}\%) stand on islands under {{meta.island_km2|int}} km$^2$ (Figure~\ref{fig:map}): {{islands.small_n|int}} on small sea islands, {{islands.mid_n|int}} on larger sea islands and {{islands.lake_n|int}} on islands in lakes and rivers. They sit on {{islands.n_polys|int}} distinct mapped islands. The islands with most houses are in the Aegean: {{islands.busiest.0.n|int}} on Imbros (Gökçeada) {{islands.busiest.1.n|int}} on Paros and {{islands.busiest.2.n|int}} on Chios, with Corfu, Naxos and Andros close behind; Valaam in Lake Ladoga has {{islands.busiest.6.n|int}}, counting its sketes, and Reichenau {{islands.busiest.7.n|int}}.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_map_europe.png}
+\caption{Monastic houses in Wikidata, by setting. Grey: mainland, including Great Britain, Ireland and islands over 1,000 km$^2$.}\label{fig:map}\end{figure}
+
+\subsection{By date of foundation}
+The share of island houses is highest among the earliest foundations (Figure~\ref{fig:per}, Table~\ref{tab:reg}). Of {{compare.all_pre800.n|int}} houses dated before 800, {{compare.all_pre800.isl|int}} are on islands ({{compare.all_pre800.pct|f1}}\%, interval {{compare.all_pre800.lo|f1}} to {{compare.all_pre800.hi|f1}}\%): Lérins and Cabrera in the western Mediterranean; Bardsey, Caldey, Iona, Douglas on the Isle of Man and Mont-Saint-Michel on the Atlantic side; and Reichenau, Herrenchiemsee, Frauenchiemsee and the Île Barbe in lakes and rivers. The share is {{compare.all_p3.pct|f1}}\% for houses founded from 1100 to 1299 ({{compare.all_p3.isl|int}} of {{compare.all_p3.n|int}}), the period of the Cistercians, the regular canons and the friars, and {{compare.all_p4.pct|f1}}\% after 1300. The century series (Figure~\ref{fig:cent}) shows the same pattern, with very few dated houses before the 900s.
+
+On the Atlantic Celtic edge, {{compare.early_atl.isl|int}} of the {{compare.early_atl.n|int}} houses dated before 1100 are on islands (Bardsey, Caldey and Iona; {{compare.early_atl.pct|f1}}\%), against {{compare.late_cont.isl|int}} of {{compare.late_cont.n|int}} houses founded in France and Central Europe from 1100 ({{compare.late_cont.pct|f1}}\%). The early Atlantic foundations therefore chose islands far more often than the later Continental ones, although the Atlantic estimate rests on very few dated houses and its interval runs from {{compare.early_atl.lo|f1}} to {{compare.early_atl.hi|f1}}\%. Including undated houses, the Atlantic edge has {{compare.atl_all.pct|f1}}\% of houses on islands and France and Central Europe {{compare.cont_all.pct|f1}}\%.
+
+Reading years ending in 00 as the middle of the century they begin rather than end moves the all-Europe shares only slightly ({{sens.p1.pct|f1}}\%, {{sens.p2.pct|f1}}\%, {{sens.p3.pct|f1}}\% and {{sens.p4.pct|f1}}\% for the four periods) and leaves the early Atlantic share at {{sens.atl_pre1100.pct|f1}}\%. Restricting to exactly dated houses gives {{sens.exact_p1.pct|f1}}\% before 800 and {{sens.exact_p3.pct|f1}}\% for 1100 to 1299. Counting only small islands under {{meta.small_km2|int}} km$^2$, the share is {{sens.small_only_p1|f1}}\% before 800 and {{sens.small_only_p4|f1}}\% after 1300.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_periods.png}
+\caption{Share of dated houses on islands by period of foundation, for all Europe and three groups of regions, with Wilson 95\% intervals.}\label{fig:per}\end{figure}
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_century.png}
+\caption{Share of dated houses on islands by century of foundation, all Europe, with the number of dated houses per century.}\label{fig:cent}\end{figure}
+
+\subsection{By region}
+Counting all houses, dated or not (Figure~\ref{fig:reg}), the highest island shares are in Wales ({{regions.2.pct|f1}}\%, {{regions.2.isl|int}} of {{regions.2.n|int}}) and Scotland ({{regions.1.pct|f1}}\%, {{regions.1.isl|int}} of {{regions.1.n|int}}), followed by the Mediterranean ({{regions.11.pct|f1}}\%) and Ireland ({{regions.0.pct|f1}}\%). The Mediterranean has by far the most island houses ({{regions.11.isl|int}}), {{compare.med_grc_tur_pct|pc}} of them on Greek and Turkish islands, mostly Orthodox monasteries and mostly undated. Brittany ({{regions.4.pct|f1}}\%) and Galicia ({{regions.6.pct|f1}}\%) have few island houses in this record despite their many coastal islands and their early saints. France and Central Europe have {{compare.cont_all.pct|f1}}\%, and {{compare.cont_lake|int}} of their {{compare.cont_all.isl|int}} island houses are on lake or river islands. Iceland and the Faroes have only {{coverage.natl_n|int}} houses in the data.
+
+By kind of house, those Wikidata calls simply monasteries are most often on islands ({{kinds_by.monastery.pct|f1}}\%), reflecting the Orthodox monasteries of the Aegean; abbeys ({{kinds_by.abbey.pct|f1}}\%), priories ({{kinds_by.priory.pct|f1}}\%) and convents ({{kinds_by.convent.pct|f1}}\%) much less. Hermitages, despite the eremitic ideal, are on islands in {{kinds_by.hermitage.pct|f1}}\% of cases, because the class is dominated by Italian and Spanish hermitages, most of them inland.
+
+{{TABLE_REG}}
+
+\begin{figure}[tbp]\centering\includegraphics[width=.92\textwidth]{f_regions.png}
+\caption{Share of houses on islands by region (regions with at least 20 houses), all houses dated or not.}\label{fig:reg}\end{figure}
+
+\begin{figure}[tbp]\centering\includegraphics[width=.9\textwidth]{f_map_atlantic.png}
+\caption{The Atlantic edge: houses by setting, with five famous island houses named.}\label{fig:atl}\end{figure}
+
+\subsection{Distance from the mainland}
+Half of the sea-island houses are within {{far.median_sea|f1}} km of the mainland, and {{far.over100_n|int}} are more than 100 km out (Figure~\ref{fig:far}). The furthest are the convents of the Azores, founded after Portuguese settlement in the fifteenth century: the Convent of Carmo at Horta on Faial is {{far.top.0.d|int}} km from the mainland. Madeira ({{far.top.5.d|int}} km), La Palma in the Canaries ({{far.top.6.d|int}} km) and Malta ({{far.top.7.d|int}} km) follow. Of houses founded before 1300, the furthest is the Hozoviotissa monastery on Amorgos ({{far.early.1.d|int}} km). On the larger islands counted as mainland, Iceland's Þingeyrar ({{far.big_top.0.y|raw}}) is {{far.big_top.0.d|int}} km from the nearest mainland coast. The Celtic holy islands are close in by comparison: Skellig Michael is {{far.skellig.d|f1}} km out, Iona {{far.iona.d|f1}} km, and the furthest in Britain and Ireland is Cille Bharra on Barra ({{far.atl.0.d|f1}} km). On lakes, the Valaam sketes are up to {{far.lake_top.0.d|f1}} km from the shore of Ladoga.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_far.png}
+\caption{Island houses furthest from continental Europe, Africa, Great Britain or Ireland (one per island), with Skellig Michael and Iona.}\label{fig:far}\end{figure}
+
+\subsection{Dissolution and abandonment}
+{{dissolution.n|int}} houses ({{dissolution.pct|f1}}\%) have a date of dissolution or abandonment (Figure~\ref{fig:dis}); another {{dissolution.ruin_n|int}} are classed as ruins or former houses without a date. The dates fall in waves: {{dissolution.waves.dissolution_ew|int}} in England and Wales from 1536 to 1541 ({{dissolution.ew_pct|pc}} of all dated closures there), {{dissolution.waves.ireland_1536_1600|int}} of {{dissolution.waves.ireland_all|int}} in Ireland from 1536 to 1600, {{dissolution.waves.france_rev|int}} in France from 1789 to 1795, {{dissolution.waves.german_1802_1811|int}} in the German lands from 1802 to 1811 and {{dissolution.waves.spain_1835_1837|int}} in Spain from 1835 to 1837. The Reformation century and the revolutionary era together hold {{dissolution.reform_rev_pct|pc}} of all dated closures.
+
+The Viking age, which fell first on island monasteries, is almost invisible: {{dissolution.waves.viking_all|int}} closures are dated between 793 and 1066, all on the mainland. The record describes houses as they were last constituted: Lindisfarne Priory is the Benedictine cell refounded in {{lindis.y|raw}} and Bardsey Abbey's dissolution date is {{lindis.bardsey_d|raw}}. Island houses carry a closure date less often than mainland ones ({{dissolution.isl_pct|f1}}\% against {{dissolution.main_pct|f1}}\%; {{dissolution.isl_nongt_pct|f1}}\% outside Greece and Turkey), and where they do, the median year is {{dissolution.isl_med_dis|int}} against {{dissolution.main_med_dis|int}}.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_dissolution.png}
+\caption{Houses dissolved or abandoned, by decade of the Wikidata date.}\label{fig:dis}\end{figure}
+
+\subsection{Coverage}
+The record is uneven (Figure~\ref{fig:cov}). Germany holds {{coverage.deu_pct|f1}}\% of houses; houses per million people range from {{coverage.per_m_top.0.per_m|int}} in North Macedonia and {{coverage.deu_per_m|int}} in Germany to {{coverage.per_m_low.0.per_m|f1}} in Finland among countries of over two million people. Ireland has {{coverage.irl_n|int}} houses in the data (north and south), a small fraction of its recorded early ecclesiastical sites, many of which are classed in Wikidata as churches, archaeological sites or ecclesiastical sites rather than monasteries. Only {{coverage.dated_pct|pc}} of houses have a foundation date, from under a third in France, Galicia and Iberia to about half in Ireland, Scotland and Wales, and Skellig Michael is among those without one. Half of all houses have {{median_sl|int}} Wikipedia article or fewer; {{coverage.sl0_pct|f1}}\% have none.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_coverage.png}
+\caption{Houses by country (top 15) and the share with a foundation date by region.}\label{fig:cov}\end{figure}
+
+\section{Discussion}
+The data support the familiar story, with qualifications. Early foundations, before 800, were several times more likely to be on islands than those of the high and late Middle Ages, and the contrast between the early Atlantic edge and the later Continental foundations is large. The island monastery was a feature of a particular moment and a particular coast, and of the late antique Mediterranean that inspired it, rather than of monasticism in general. After 1100 new orders sought other solitudes: the Cistercians' remote valleys, the Carthusians' mountains, and then the friars' towns.
+
+The Orthodox world offers a contrast. The Aegean islands hold more monastic houses than anywhere else, and Valaam, Konevets and Solovetsky took the island ideal to the lakes and seas of the Russian north in the fourteenth and fifteenth centuries. Here the island monastery was a lasting tradition, not an early phase, and many houses are still active, which is one reason why island houses are less often recorded as dissolved.
+
+The dissolution dates show how far the record reflects the institutions that survived longest. The Viking raids that ended or interrupted the early island communities are absent, while the Dissolution of the Monasteries, the French Revolution and the German secularisations stand out sharply, because the houses then closed were well documented institutions whose ends were recorded.
+
+\section{Limitations}
+First, coverage: Wikidata's monastery records depend on which national lists have been loaded and how early sites are classified, and the early Atlantic sample is small. Second, dates: inception may record a refoundation, precision is lost in the extract, and only a third of houses are dated. Third, geography: present-day shorelines are used, so islands since joined to the land (and land since lost to the sea) are classified as they are now; small lake and river islands are undercounted despite the hand checks; the 1,000 km$^2$ threshold is a choice, and other choices are reported. Fourth, points: a few coordinates are imprecise or refer to a later site of a community. Fifth, the study counts records and cannot speak to motives.
+
+\section{Conclusion}
+Of the monastic houses that Wikidata places in Europe, about one in forty stands on an island. The share was highest among the earliest foundations and on the Atlantic edge, and the Aegean holds the most island houses of all. The analysis is open and reproducible, and its gaps point to where the record could be improved: dates, early Irish sites, and the papar of the North Atlantic.
+
+\section*{Data and code availability}
+The interactive map is at \url{{{meta.page}}}. Data and code are at \url{{{meta.repo}}} and archived with this paper at \url{https://doi.org/{{DOI}}}. Wikidata content is CC0; island outlines derived from GSHHG are LGPL-3.0; the derived data and text are released under CC BY 4.0 and the code under the MIT licence.
+
+\section*{AI statement}
+I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.
+
+\begin{thebibliography}{9}
+\bibitem[Bast and Buchhold(2017)]{qlever} Bast, H. and Buchhold, B. (2017) QLever: a query engine for efficient SPARQL+text search. \emph{Proceedings of the 2017 ACM Conference on Information and Knowledge Management}, 647 to 656.
+\bibitem[Dicuil(825)]{dicuil} Dicuil (c. 825) \emph{Liber de mensura orbis terrae}. Ed. J. J. Tierney (1967), Dublin Institute for Advanced Studies.
+\bibitem[Natural Earth(2026)]{naturalearth} Natural Earth (2026) Admin 0 countries (1:50m), admin 1 provinces and populated places (1:10m). Public domain. \url{https://www.naturalearthdata.com/}
+\bibitem[Vrandečić and Krötzsch(2014)]{wikidata} Vrandečić, D. and Krötzsch, M. (2014) Wikidata: a free collaborative knowledgebase. \emph{Communications of the ACM}, 57(10), 78 to 85.
+\bibitem[Wessel and Smith(1996)]{gshhg} Wessel, P. and Smith, W. H. F. (1996) A global, self-consistent, hierarchical, high-resolution shoreline database. \emph{Journal of Geophysical Research}, 101(B4), 8741 to 8743.
+\end{thebibliography}
+\end{document}
